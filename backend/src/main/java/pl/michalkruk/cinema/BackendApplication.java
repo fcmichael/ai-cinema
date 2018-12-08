@@ -1,4 +1,4 @@
-package pl.michalkruk.backend;
+package pl.michalkruk.cinema;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
