@@ -5,3 +5,4 @@ out
 gen
 
 /backend/target
+/frontend/src/main/web/node_modules/
