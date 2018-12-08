@@ -45,6 +45,13 @@
             <version>1.18.4</version>
         </dependency>
 
+        <!--object mapper-->
+        <dependency>
+            <groupId>org.modelmapper.extensions</groupId>
+            <artifactId>modelmapper-spring</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>

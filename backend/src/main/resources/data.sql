@@ -1,0 +1,1 @@
+insert into movie (id, tytul, gatunek) values (1, 'Iniemamocni', 'ANIMOWANY');
