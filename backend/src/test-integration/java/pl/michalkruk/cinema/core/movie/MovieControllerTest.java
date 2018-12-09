@@ -28,7 +28,7 @@ public class MovieControllerTest {
     @Test
     public void should_return_all_movies() {
         ResponseEntity<List<MovieDTO>> response =
-                restTemplate.exchange("/movie",
+                restTemplate.exchange("/movies",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
                         });
 
