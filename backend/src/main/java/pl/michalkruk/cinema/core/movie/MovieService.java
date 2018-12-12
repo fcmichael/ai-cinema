@@ -1,7 +1,8 @@
 package pl.michalkruk.cinema.core.movie;
 
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import pl.michalkruk.cinema.util.FileService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +11,11 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     private final MovieRepository movieRepository;
-    private final ModelMapper modelMapper;
+    private final String imageLocation;
 
-    public MovieService(MovieRepository movieRepository, ModelMapper modelMapper) {
+    public MovieService(MovieRepository movieRepository, @Value("${images.location}") String imageLocation) {
         this.movieRepository = movieRepository;
-        this.modelMapper = modelMapper;
+        this.imageLocation = imageLocation;
     }
 
     public List<MovieDTO> findAll() {
@@ -22,6 +23,6 @@ public class MovieService {
     }
 
     private MovieDTO mapToDTO(Movie movie) {
-        return modelMapper.map(movie, MovieDTO.class);
+        return new MovieDTO(movie.getTitle(), movie.getGenre().toString(), FileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
     }
 }

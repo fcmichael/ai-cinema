@@ -1,6 +1,17 @@
-<h2>My Movies</h2>
-<ul>
-  <li *ngFor="let movie of movies">
-    <span>{{movie.id}}</span> {{movie.title}} {{movie.genre}}
-  </li>
-</ul>
+<div class="programme">
+  <div class="movie-container" *ngFor="let movie of movies">
+    <div class="movie">
+      <div class="movie-image">
+        <img [src]="movie.image">
+      </div>
+      <div class="border"></div>
+      <div class="movie-info">
+        <div class="movie-title">{{movie.title | uppercase}}</div>
+        <div class="movie-length">ANIMOWANY | Od: b.o. | 120 minut</div>
+        <div class="movie-description">Film opowiada o historii...</div>
+      </div>
+      <div class="border"></div>
+      <div class="movie-make-reservation"></div>
+    </div>
+  </div>
+</div>

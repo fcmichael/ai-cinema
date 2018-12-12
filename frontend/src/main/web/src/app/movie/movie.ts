@@ -1,5 +1,9 @@
 export class Movie {
-  id: number;
-  title: string;
-  genre: string;
+  constructor(
+    public id: number,
+    public title: string,
+    public genre: string,
+    public image: any
+  ) {
+  }
 }

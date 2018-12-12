@@ -1,0 +1,49 @@
+.programme {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-container {
+  border-bottom: solid;
+  border-color: rgba(208, 208, 208, 0.25);
+  border-width: thin;
+}
+
+.movie {
+  display: flex;
+  flex-direction: row;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.movie-info {
+  flex-grow: 8;
+  padding-left: 3%;
+}
+
+.movie-title {
+  color: white;
+  font-size: 24px;
+  padding-bottom: 3%;
+  font-family: "DejaVu Serif", sans-serif;
+  letter-spacing: 2px;
+}
+
+.movie-length {
+  color: rgba(208, 208, 208, 0.5);
+  font-size: 18px;
+  padding-bottom: 7%;
+}
+
+.movie-description {
+  color: white;
+  font-size: 14px;
+}
+
+.movie-make-reservation {
+  flex-grow: 2;
+}
+
+.border {
+  flex-grow: 1;
+}

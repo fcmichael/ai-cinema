@@ -18,10 +18,10 @@ public class Movie {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "tytul")
     private String title;
 
-    @Column(name = "gatunek")
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    private String imageName;
 }
