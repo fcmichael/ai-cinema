@@ -6,9 +6,15 @@
       </div>
       <div class="border"></div>
       <div class="movie-info">
-        <div class="movie-title">{{movie.title | uppercase}}</div>
-        <div class="movie-length">ANIMOWANY | Od: b.o. | 120 minut</div>
-        <div class="movie-description">Film opowiada o historii...</div>
+        <div class="movie-title">{{movie.title | uppercase}} ({{movie.releaseYear}})</div>
+        <div class="movie-length">
+          <span>{{movie.genre}} </span>
+          <span style="padding-left: 8px; padding-right: 8px">|</span>
+          <span>Od lat: {{movie.ageLimit}}</span>
+          <span style="padding-left: 8px;padding-right: 8px">|</span>
+          <span>{{movie.duration}} min.</span>
+        </div>
+        <div class="movie-description">{{movie.description}}</div>
       </div>
       <div class="border"></div>
       <div class="movie-make-reservation"></div>

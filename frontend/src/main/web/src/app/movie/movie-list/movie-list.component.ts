@@ -24,6 +24,10 @@ export class MovieListComponent implements OnInit {
               r.id,
               r.title,
               r.genre,
+              r.ageLimit,
+              r.duration,
+              r.releaseYear,
+              r.description,
               this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image)
             )
           );

@@ -16,9 +16,21 @@
   padding-bottom: 2%;
 }
 
+.movie-image > img {
+  position: relative;
+  float: left;
+  width: 200px;
+  height: 300px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .movie-info {
   flex-grow: 8;
   padding-left: 3%;
+  line-height: 140%;
+  text-align: justify;
 }
 
 .movie-title {
@@ -37,7 +49,7 @@
 
 .movie-description {
   color: white;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .movie-make-reservation {

@@ -23,5 +23,15 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    @Enumerated(EnumType.STRING)
+    private AgeLimit ageLimit;
+
+    private short duration;
+
+    private short releaseYear;
+
+    @Column(length = 2000)
+    private String description;
+
     private String imageName;
 }

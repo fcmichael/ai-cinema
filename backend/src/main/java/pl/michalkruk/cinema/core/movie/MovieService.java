@@ -23,6 +23,12 @@ public class MovieService {
     }
 
     private MovieDTO mapToDTO(Movie movie) {
-        return new MovieDTO(movie.getTitle(), movie.getGenre().toString(), FileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
+        return new MovieDTO(movie.getTitle(),
+                movie.getGenre().toString(),
+                movie.getAgeLimit().toString(),
+                movie.getDuration(),
+                movie.getReleaseYear(),
+                movie.getDescription(),
+                FileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
     }
 }
