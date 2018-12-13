@@ -10,6 +10,9 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MovieListComponent implements OnInit {
 
+  genres: string[] = ['Dramat', 'Animowany'];
+  countries: string[] = ['USA', 'Niemcy', 'Francja'];
+  releaseYears: number[] = [1994, 1999, 2018];
   movies: Movie[] = [];
 
   constructor(private movieService: MovieService, private sanitizer: DomSanitizer) {

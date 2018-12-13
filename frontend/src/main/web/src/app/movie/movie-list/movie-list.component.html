@@ -1,4 +1,42 @@
 <div class="programme">
+  <div class="movie-filter-container">
+    <div class="movie-filter-header">
+      <div>Filtruj</div>
+    </div>
+    <div class="border"></div>
+    <div class="movie-filter">
+      <mat-form-field>
+        <mat-select placeholder="Gatunek">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let genre of genres" [value]="genre">
+            {{genre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="border"></div>
+    <div class="movie-filter">
+      <mat-form-field>
+        <mat-select placeholder="Kraj produkcji">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="border"></div>
+    <div class="movie-filter">
+      <mat-form-field>
+        <mat-select placeholder="Rok produkcji">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let releaseYear of releaseYears" [value]="releaseYear">
+            {{releaseYear}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
   <div class="movie-container" *ngFor="let movie of movies">
     <div class="movie">
       <div class="movie-image">
