@@ -4,10 +4,22 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum Genre {
-    KOMEDIA("Komedia"),
-    DRAMAT("Dramat"),
+    AKCJA("Akcja"),
     ANIMOWANY("Animowany"),
-    GANGSTERSKI("Gangsterski");
+    BIOGRAFICZNY("Biograficzny"),
+    DRAMAT("Dramat"),
+    FANTASY("Fantasy"),
+    GANGSTERSKI("Gangsterski"),
+    HORROT("Horror"),
+    KATASTROFICZNY("Katastroficzny"),
+    KOMEDIA("Komedia"),
+    KOMEDIA_ROMANTYCZNA("Komedia romantyczna"),
+    KRYMINALNY("Kryminalny"),
+    MUSICAL("Musical"),
+    OBYCZAJOWY("Obyczajowy"),
+    SCI_FI("Science-Fiction"),
+    THRILLER("Thriller"),
+    WOJENNY("Wojenny");
 
     private String description;
 

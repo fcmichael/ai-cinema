@@ -1,5 +1,6 @@
 package pl.michalkruk.cinema.core.movie;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -22,13 +27,15 @@ import java.util.List;
 @TestPropertySource(locations = "classpath:application-integration-test.properties")
 public class MovieControllerTest {
 
+    private final String baseUrl = "/movies";
+
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void should_return_all_movies() {
+    public void should_return_all_movies_when_no_request_parameters_specified() {
         ResponseEntity<List<MovieDTO>> response =
-                restTemplate.exchange("/movies",
+                restTemplate.exchange(baseUrl,
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
                         });
 
@@ -36,6 +43,76 @@ public class MovieControllerTest {
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertNotNull(movies);
-        Assert.assertEquals(1, movies.size());
+        Assert.assertEquals(10, movies.size());
+    }
+
+    @Test
+    public void should_return_all_movies_by_genre() {
+        UriComponentsBuilder builder = UriComponentsBuilder
+                .fromUriString(baseUrl)
+                .queryParam("genre", "DRAMAT");
+
+        ResponseEntity<List<MovieDTO>> response =
+                restTemplate.exchange(builder.toUriString(),
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        });
+
+        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assert.assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(1L, 2L, 5L, 10L), moviesIds));
+    }
+
+    @Test
+    public void should_return_all_movies_by_country() {
+        UriComponentsBuilder builder = UriComponentsBuilder
+                .fromUriString(baseUrl)
+                .queryParam("country", "POLAND");
+
+        ResponseEntity<List<MovieDTO>> response =
+                restTemplate.exchange(builder.toUriString(),
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        });
+
+        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assert.assertEquals(Collections.singletonList(8L), moviesIds);
+    }
+
+    @Test
+    public void should_return_all_movies_by_release_year() {
+        UriComponentsBuilder builder = UriComponentsBuilder
+                .fromUriString(baseUrl)
+                .queryParam("releaseYear", "1999");
+
+        ResponseEntity<List<MovieDTO>> response =
+                restTemplate.exchange(builder.toUriString(),
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        });
+
+        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assert.assertEquals(Collections.singletonList(2L), moviesIds);
+    }
+
+    @Test
+    public void should_return_all_movies_by_genre_country_and_release_year() {
+        UriComponentsBuilder builder = UriComponentsBuilder
+                .fromUriString(baseUrl)
+                .queryParam("genre", "ANIMOWANY")
+                .queryParam("country", "USA")
+                .queryParam("releaseYear", "1994");
+
+        ResponseEntity<List<MovieDTO>> response =
+                restTemplate.exchange(builder.toUriString(),
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        });
+
+        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assert.assertEquals(Collections.singletonList(9L), moviesIds);
     }
 }

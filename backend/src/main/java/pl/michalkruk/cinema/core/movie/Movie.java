@@ -30,6 +30,9 @@ public class Movie {
 
     private short releaseYear;
 
+    @Enumerated(EnumType.STRING)
+    private Country country;
+
     @Column(length = 2000)
     private String description;
 
