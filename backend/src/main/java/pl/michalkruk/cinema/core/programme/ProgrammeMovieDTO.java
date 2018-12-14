@@ -1,11 +1,11 @@
-package pl.michalkruk.cinema.core.movie;
+package pl.michalkruk.cinema.core.programme;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-class MovieDTO {
+public class ProgrammeMovieDTO {
     private long id;
     private String title;
     private String genre;

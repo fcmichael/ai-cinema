@@ -1,4 +1,4 @@
-package pl.michalkruk.cinema.core.movie;
+package pl.michalkruk.cinema.core.programme;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
@@ -15,6 +15,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.util.UriComponentsBuilder;
+import pl.michalkruk.cinema.core.programme.ProgrammeMovieDTO;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,21 +26,21 @@ import java.util.stream.Collectors;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:integration-test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @TestPropertySource(locations = "classpath:application-integration-test.properties")
-public class MovieControllerTest {
+public class ProgrammeControllerTest {
 
-    private final String baseUrl = "/movies";
+    private final String baseUrl = "/programme";
 
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
     public void should_return_all_movies_when_no_request_parameters_specified() {
-        ResponseEntity<List<MovieDTO>> response =
+        ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(baseUrl,
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
                         });
 
-        List<MovieDTO> movies = response.getBody();
+        List<ProgrammeMovieDTO> movies = response.getBody();
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertNotNull(movies);
@@ -52,12 +53,12 @@ public class MovieControllerTest {
                 .fromUriString(baseUrl)
                 .queryParam("genre", "DRAMAT");
 
-        ResponseEntity<List<MovieDTO>> response =
+        ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
                         });
 
-        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+        List<Long> moviesIds = response.getBody().stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(1L, 2L, 5L, 10L), moviesIds));
@@ -69,12 +70,12 @@ public class MovieControllerTest {
                 .fromUriString(baseUrl)
                 .queryParam("country", "POLAND");
 
-        ResponseEntity<List<MovieDTO>> response =
+        ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
                         });
 
-        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+        List<Long> moviesIds = response.getBody().stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertEquals(Collections.singletonList(8L), moviesIds);
@@ -86,12 +87,12 @@ public class MovieControllerTest {
                 .fromUriString(baseUrl)
                 .queryParam("releaseYear", "1999");
 
-        ResponseEntity<List<MovieDTO>> response =
+        ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
                         });
 
-        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+        List<Long> moviesIds = response.getBody().stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertEquals(Collections.singletonList(2L), moviesIds);
@@ -105,12 +106,12 @@ public class MovieControllerTest {
                 .queryParam("country", "USA")
                 .queryParam("releaseYear", "1994");
 
-        ResponseEntity<List<MovieDTO>> response =
+        ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<MovieDTO>>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
                         });
 
-        List<Long> moviesIds = response.getBody().stream().map(MovieDTO::getId).collect(Collectors.toList());
+        List<Long> moviesIds = response.getBody().stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertEquals(Collections.singletonList(9L), moviesIds);

@@ -18,6 +18,8 @@ public class Movie {
     @GeneratedValue
     private Long id;
 
+    private boolean currentlyPlayed;
+
     private String title;
 
     @Enumerated(EnumType.STRING)
