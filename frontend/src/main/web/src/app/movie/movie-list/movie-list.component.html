@@ -6,10 +6,10 @@
     <div class="border"></div>
     <div class="movie-filter">
       <mat-form-field>
-        <mat-select placeholder="Gatunek">
+        <mat-select placeholder="Gatunek" (selectionChange)="getMovies()" [(ngModel)]="selectedGenre" name="genre">
           <mat-option></mat-option>
-          <mat-option *ngFor="let genre of genres" [value]="genre">
-            {{genre}}
+          <mat-option *ngFor="let key of genreKeys" [value]="key">
+            {{genres[key]}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -17,10 +17,10 @@
     <div class="border"></div>
     <div class="movie-filter">
       <mat-form-field>
-        <mat-select placeholder="Kraj produkcji">
+        <mat-select placeholder="Kraj produkcji" (selectionChange)="getMovies()" [(ngModel)]="selectedCountry" name="country">
           <mat-option></mat-option>
-          <mat-option *ngFor="let country of countries" [value]="country">
-            {{country}}
+          <mat-option  *ngFor="let key of countryKeys" [value]="key">
+            {{countries[key]}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -28,7 +28,7 @@
     <div class="border"></div>
     <div class="movie-filter">
       <mat-form-field>
-        <mat-select placeholder="Rok produkcji">
+        <mat-select placeholder="Rok produkcji" (selectionChange)="getMovies()" [(ngModel)]="selectedYear" name="year">
           <mat-option></mat-option>
           <mat-option *ngFor="let releaseYear of releaseYears" [value]="releaseYear">
             {{releaseYear}}
@@ -44,9 +44,9 @@
       </div>
       <div class="border"></div>
       <div class="movie-info">
-        <div class="movie-title">{{movie.title | uppercase}} ({{movie.releaseYear}})</div>
+        <div class="movie-title">{{movie.title | uppercase}} ({{countries[movie.country]}}, {{movie.releaseYear}})</div>
         <div class="movie-length">
-          <span>{{movie.genre}} </span>
+          <span>{{genres[movie.genre]}} </span>
           <span style="padding-left: 8px; padding-right: 8px">|</span>
           <span>Od lat: {{movie.ageLimit}}</span>
           <span style="padding-left: 8px;padding-right: 8px">|</span>

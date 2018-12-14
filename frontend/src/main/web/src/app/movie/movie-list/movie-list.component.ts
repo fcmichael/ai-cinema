@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Movie} from "../movie";
 import {MovieService} from "../movie.service";
-import {DomSanitizer} from "@angular/platform-browser";
+import {Genre} from "../genre";
+import {Country} from "../contry";
 
 @Component({
   selector: 'app-movie-list',
@@ -10,33 +11,41 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MovieListComponent implements OnInit {
 
-  genres: string[] = ['Dramat', 'Animowany'];
-  countries: string[] = ['USA', 'Niemcy', 'Francja'];
-  releaseYears: number[] = [1994, 1999, 2018];
+  genres = Genre;
+  genreKeys: string[];
+  countries = Country;
+  countryKeys: string[];
+  releaseYears: number[];
   movies: Movie[] = [];
 
-  constructor(private movieService: MovieService, private sanitizer: DomSanitizer) {
+  selectedGenre: string;
+  selectedCountry: string;
+  selectedYear: string;
+
+  constructor(private movieService: MovieService) {
   }
 
   ngOnInit() {
-    this.movieService.getMovies().subscribe(
-      resp => {
-        resp.forEach(r => {
-          this.movies.push(
-            new Movie(
-              r.id,
-              r.title,
-              r.genre,
-              r.ageLimit,
-              r.duration,
-              r.releaseYear,
-              r.description,
-              this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image)
-            )
-          );
-        })
-      }
-    );
+    this.genreKeys = Object.keys(Genre);
+    this.countryKeys = Object.keys(Country);
+    this.generateReleaseYears();
+    this.getMovies();
   }
 
+  getMovies() {
+    this.movieService
+      .getMoviesByGenreAndCountryAndReleaseYear(this.selectedGenre, this.selectedCountry, this.selectedYear)
+      .subscribe(movies => this.movies = movies);
+  }
+
+  generateReleaseYears() {
+    let maxYear = 2018;
+    let minYear = 1957;
+    let years: number[] = [];
+    for (let i = maxYear; i >= minYear; i--) {
+      years.push(i);
+    }
+
+    this.releaseYears = years;
+  }
 }

@@ -1,9 +1,9 @@
 package pl.michalkruk.cinema.core.movie;
 
 public enum Country {
-    USA,
-    GERMANY,
     FRANCE,
+    GERMANY,
+    GREAT_BRITAIN,
     POLAND,
-    GREAT_BRITAIN
+    USA
 }

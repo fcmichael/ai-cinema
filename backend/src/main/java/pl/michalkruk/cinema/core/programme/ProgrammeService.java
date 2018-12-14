@@ -36,7 +36,7 @@ public class ProgrammeService {
                 movie.getAgeLimit().toString(),
                 movie.getDuration(),
                 movie.getReleaseYear(),
-                movie.getCountry().name(),
+                movie.getCountry().toString(),
                 movie.getDescription(),
                 FileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
     }

@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from './app.component';
 import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {AppRoutingModule} from "./app-routing.module";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {AppRoutingModule} from "./app-routing.module";
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
