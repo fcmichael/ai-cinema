@@ -3,6 +3,7 @@ import {Movie} from "../movie";
 import {MovieService} from "../movie.service";
 import {Genre} from "../genre";
 import {Country} from "../contry";
+import {Weekday} from "./weekday";
 
 @Component({
   selector: 'app-movie-list',
@@ -17,10 +18,14 @@ export class MovieListComponent implements OnInit {
   countryKeys: string[];
   releaseYears: number[];
   movies: Movie[] = [];
+  displayHours: string[] = ['13:00', '18:15'];
+  weekdays = Weekday;
+  weekdayKeys: string[];
 
   selectedGenre: string;
   selectedCountry: string;
   selectedYear: string;
+  selectedWeekday: string;
 
   constructor(private movieService: MovieService) {
   }
@@ -28,6 +33,8 @@ export class MovieListComponent implements OnInit {
   ngOnInit() {
     this.genreKeys = Object.keys(Genre);
     this.countryKeys = Object.keys(Country);
+    this.weekdayKeys = Object.keys(Weekday);
+    this.selectedWeekday = this.weekdayKeys[(new Date).getDay()];
     this.generateReleaseYears();
     this.getMovies();
   }

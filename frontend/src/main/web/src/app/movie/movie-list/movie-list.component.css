@@ -3,6 +3,22 @@
   flex-direction: column;
 }
 
+.programme-day-filter-container {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+
+.programme-day-filter-header {
+  color: white;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
 .movie-filter-container {
   display: flex;
   flex-direction: row;
@@ -73,12 +89,37 @@
 .movie-description {
   color: white;
   font-size: 15px;
+  border-bottom: solid;
+  border-color: rgba(208, 208, 208, 0.25);
+  border-width: thin;
+  padding-bottom: 20px;
 }
 
-.movie-make-reservation {
-  flex-grow: 2;
+.movie-reservation-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.reservation-button {
+  flex-grow: 1;
+  height: 60px;
+  width: 90px;
+  font-size: 20px;
+}
+
+.reservation-border {
+  min-width: 80px;
+  width: 110px;
 }
 
 .border {
-  flex-grow: 1;
+  flex-grow: 3;
+}
+
+.mat-button-toggle-checked {
+  background-color: #c2185b;
+  color: white;
 }

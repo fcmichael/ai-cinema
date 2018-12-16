@@ -1,4 +1,15 @@
 <div class="programme">
+  <div class="programme-day-filter-container">
+    <div class="programme-day-filter-header">
+      <div>Dzień tygodnia</div>
+    </div>
+    <div class="border"></div>
+    <div class="movie-filter">
+      <mat-button-toggle-group [value]="selectedWeekday">
+        <mat-button-toggle *ngFor="let weekdayKey of weekdayKeys" [value]="weekdayKey">{{weekdays[weekdayKey]}}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
   <div class="movie-filter-container">
     <div class="movie-filter-header">
       <div>Filtruj</div>
@@ -17,9 +28,10 @@
     <div class="border"></div>
     <div class="movie-filter">
       <mat-form-field>
-        <mat-select placeholder="Kraj produkcji" (selectionChange)="getMovies()" [(ngModel)]="selectedCountry" name="country">
+        <mat-select placeholder="Kraj produkcji" (selectionChange)="getMovies()" [(ngModel)]="selectedCountry"
+                    name="country">
           <mat-option></mat-option>
-          <mat-option  *ngFor="let key of countryKeys" [value]="key">
+          <mat-option *ngFor="let key of countryKeys" [value]="key">
             {{countries[key]}}
           </mat-option>
         </mat-select>
@@ -53,9 +65,14 @@
           <span>{{movie.duration}} min.</span>
         </div>
         <div class="movie-description">{{movie.description}}</div>
+        <div class="movie-reservation-container">
+          <div class="movie-reservation" *ngFor="let hour of displayHours">
+            <button class="reservation-button" mat-flat-button color="primary">{{hour}}</button>
+            <div class="reservation-border"></div>
+          </div>
+        </div>
       </div>
       <div class="border"></div>
-      <div class="movie-make-reservation"></div>
     </div>
   </div>
 </div>
