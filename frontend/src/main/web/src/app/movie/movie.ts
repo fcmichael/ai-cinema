@@ -1,5 +1,6 @@
 import {Genre} from "./genre";
 import {Country} from "./contry";
+import {Show} from "./show";
 
 export class Movie {
   constructor(
@@ -11,7 +12,8 @@ export class Movie {
     public releaseYear: number,
     public country: Country,
     public description: string,
-    public image: any
+    public image: any,
+    public shows: Show[]
   ) {
   }
 }

@@ -15,13 +15,15 @@ export class MovieService {
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
   }
 
-  getMoviesByGenreAndCountryAndReleaseYear(
+  getMoviesByGenreAndCountryAndReleaseYearAndDay(
     genre: string,
     country: string,
-    releaseYear: string
+    releaseYear: string,
+    date: string
   ): Observable<Movie[]> {
 
-    let params = new HttpParams();
+    let params = new HttpParams().append('date', date);
+
     if (genre != null) {
       params = params.append('genre', genre);
     }
@@ -46,7 +48,8 @@ export class MovieService {
             r.releaseYear,
             r.country,
             r.description,
-            this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image)
+            this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image),
+            r.shows
           )
         });
       }));

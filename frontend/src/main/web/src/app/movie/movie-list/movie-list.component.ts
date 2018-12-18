@@ -18,14 +18,13 @@ export class MovieListComponent implements OnInit {
   countryKeys: string[];
   releaseYears: number[];
   movies: Movie[] = [];
-  displayHours: string[] = ['13:00', '18:15'];
   weekdays = Weekday;
   weekdayKeys: string[];
 
   selectedGenre: string;
   selectedCountry: string;
   selectedYear: string;
-  selectedWeekday: string;
+  selectedWeekday: number;
 
   constructor(private movieService: MovieService) {
   }
@@ -34,14 +33,15 @@ export class MovieListComponent implements OnInit {
     this.genreKeys = Object.keys(Genre);
     this.countryKeys = Object.keys(Country);
     this.weekdayKeys = Object.keys(Weekday);
-    this.selectedWeekday = this.weekdayKeys[(new Date).getDay()];
+    this.selectedWeekday = (new Date).getDay();
     this.generateReleaseYears();
     this.getMovies();
   }
 
   getMovies() {
     this.movieService
-      .getMoviesByGenreAndCountryAndReleaseYear(this.selectedGenre, this.selectedCountry, this.selectedYear)
+      .getMoviesByGenreAndCountryAndReleaseYearAndDay(
+        this.selectedGenre, this.selectedCountry, this.selectedYear, MovieListComponent.getDateFromWeekday(this.selectedWeekday))
       .subscribe(movies => this.movies = movies);
   }
 
@@ -54,5 +54,12 @@ export class MovieListComponent implements OnInit {
     }
 
     this.releaseYears = years;
+  }
+
+  static getDateFromWeekday(weekday: number): string {
+    let date = new Date();
+    date.setDate(date.getDate() + (weekday + (7 - date.getDay())) % 7);
+
+    return date.toISOString().substr(0, 10);
   }
 }
