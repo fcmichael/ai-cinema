@@ -3,8 +3,8 @@
     <div class="programme-day-filter-header">
       <div>Dzień tygodnia</div>
     </div>
-    <div class="border"></div>
-    <div class="movie-filter">
+    <!--<div class="border"></div>-->
+    <div class="programme-day-filter-button-container">
       <mat-button-toggle-group [value]="selectedWeekday" (change)="getMovies()" [(ngModel)]="selectedWeekday">
         <mat-button-toggle *ngFor="let weekdayKey of weekdayKeys; index as i" [value]="i">{{weekdays[weekdayKey]}}</mat-button-toggle>
       </mat-button-toggle-group>

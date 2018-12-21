@@ -7,16 +7,22 @@
   display: flex;
   flex-direction: row;
   padding-bottom: 30px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .programme-day-filter-header {
   color: white;
-  display: flex;
   justify-content: left;
   align-items: center;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 1px;
   font-size: 18px;
+  flex-grow: 1;
+}
+
+.programme-day-filter-button-container {
+  flex-grow: 1;
 }
 
 .movie-filter-container {
