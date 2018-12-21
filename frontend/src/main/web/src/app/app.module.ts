@@ -9,12 +9,14 @@ import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
+import { PriceListComponent } from './price-list/price-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
-    NavbarComponent
+    NavbarComponent,
+    PriceListComponent
   ],
   imports: [
     BrowserModule,
