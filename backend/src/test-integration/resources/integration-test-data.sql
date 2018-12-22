@@ -13,11 +13,11 @@ insert into movie (id, title, genre, age_limit, duration, release_year, country,
 insert into movie (id, title, genre, age_limit, duration, release_year, country, description, image_name) values (9, 'Król Lew', 'ANIMOWANY', 'B_O', 89, 1994, 'USA', 'Film opowiada o losach Simby, młodego lwa, który - oskarżony o nieumyślne zabójstwo swojego ojca, króla Lwiej Skały - zostaje skazany na wygnanie. Władzę w królestwie obejmuje Skaza, brat zmarłego władcy. Mija kilka lat. Pewnego dnia Simba spotyka dawną przyjaciółkę, od której dowiaduje się, że królestwo chyli się ku upadkowi. Młody następca tronu postanawia powrócić do dawnej ojczyzny i odzyskać zabrany mu podstępem tron.', 'krol_lew.jpg');
 insert into movie (id, title, genre, age_limit, duration, release_year, country, description, image_name) values (10, 'Slumdog. Milioner z ulicy', 'DRAMAT', 'MIN_12', 120, 2008, 'GREAT_BRITAIN', 'Jamal, mieszkaniec slumsów Bombaju, w wieku 18 lat bierze udział w hinduskiej wersji "Milionerów". Od finałowej wygranej dzieli go ostatnie pytanie, jednak zanim zdąży na nie odpowiedzieć, aresztuje go policja. Funkcjonariusze chcą się dowiedzieć jak chłopak może wiedzieć tak dużo. Jamal opowiada prawdziwą historię dzieciństwa, przemocy i miłości swojego życia. To ulica była jego szkołą. Szkołą przetrwania...', 'slumdog.jpg');
 
-insert into auditorium(id, name) values (1, 'A');
-insert into auditorium(id, name) values (2, 'B');
-insert into auditorium(id, name) values (3, 'C');
-insert into auditorium(id, name) values (4, 'D');
-insert into auditorium(id, name) values (5, 'E');
+insert into auditorium(id, name, rows, columns) values (1, 'A', 9, 18);
+insert into auditorium(id, name, rows, columns) values (2, 'B', 8, 22);
+insert into auditorium(id, name, rows, columns) values (3, 'C', 8, 18);
+insert into auditorium(id, name, rows, columns) values (4, 'D', 10, 12);
+insert into auditorium(id, name, rows, columns) values (5, 'E', 14, 12);
 
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (1, 1, 1, CURRENT_DATE, '11:30');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (2, 1, 2, CURRENT_DATE, '20:00');

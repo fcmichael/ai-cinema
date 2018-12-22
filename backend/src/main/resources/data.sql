@@ -10,16 +10,16 @@ insert into movie (id, title, genre, age_limit, duration, release_year, country,
 insert into movie (id, title, genre, age_limit, duration, release_year, country, description, image_name) values (10, 'Slumdog. Milioner z ulicy', 'DRAMAT', 'MIN_12', 120, 2008, 'GREAT_BRITAIN', 'Jamal, mieszkaniec slumsów Bombaju, w wieku 18 lat bierze udział w hinduskiej wersji "Milionerów". Od finałowej wygranej dzieli go ostatnie pytanie, jednak zanim zdąży na nie odpowiedzieć, aresztuje go policja. Funkcjonariusze chcą się dowiedzieć jak chłopak może wiedzieć tak dużo. Jamal opowiada prawdziwą historię dzieciństwa, przemocy i miłości swojego życia. To ulica była jego szkołą. Szkołą przetrwania...', 'slumdog.jpg');
 insert into movie (id, title, genre, age_limit, duration, release_year, country, description, image_name) values (11, 'Ojciec chrzestny', 'GANGSTERSKI', 'MIN_18', 175, 1972, 'USA', 'USA, koniec II wojny światowej. Szefem nowojorskiej mafii jest sędziwy Don Vito Corleone (Marlon Brando), a jego pomocnikami są synowie: Sonny (James Caan) i Fredo (John Cazale) oraz inteligentny i rozważny Irlandczyk, Tom Hagen (Robert Duvall). Trzeci syn Vito, Michael (Al Pacino), absolwent wyższej uczelni, jest przeciwny działalności ojca. Pewnego dnia rodzina Corleone, odmawiając udziału w dystrybucji narkotyków, staje się niepotrzebną przeszkodą dla innych mafii. Dochodzi do nieudanego zamachu na Dona Corleone, a następnie do "wielkiej wojny" nowojorskich gangów, w której niespodziewanie odegra kluczową rolę Michael.', 'ojciec_chrzestny.jpg');
 
-insert into auditorium(id, name) values (1, 'A');
-insert into auditorium(id, name) values (2, 'B');
-insert into auditorium(id, name) values (3, 'C');
-insert into auditorium(id, name) values (4, 'D');
-insert into auditorium(id, name) values (5, 'E');
-insert into auditorium(id, name) values (6, 'F');
-insert into auditorium(id, name) values (7, 'G');
-insert into auditorium(id, name) values (8, 'H');
-insert into auditorium(id, name) values (9, 'I');
-insert into auditorium(id, name) values (10, 'J');
+insert into auditorium(id, name, rows, columns) values (1, 'A', 9, 18);
+insert into auditorium(id, name, rows, columns) values (2, 'B', 8, 22);
+insert into auditorium(id, name, rows, columns) values (3, 'C', 8, 18);
+insert into auditorium(id, name, rows, columns) values (4, 'D', 10, 12);
+insert into auditorium(id, name, rows, columns) values (5, 'E', 14, 12);
+insert into auditorium(id, name, rows, columns) values (6, 'F', 10, 8);
+insert into auditorium(id, name, rows, columns) values (7, 'G', 9, 9);
+insert into auditorium(id, name, rows, columns) values (8, 'H', 7, 9);
+insert into auditorium(id, name, rows, columns) values (9, 'I', 8, 11);
+insert into auditorium(id, name, rows, columns) values (10, 'J', 11, 12);
 
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (1, 1, 1, CURRENT_DATE, '11:30');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (2, 1, 1, CURRENT_DATE, '15:15');
@@ -131,3 +131,14 @@ insert into show (id, movie_id, auditorium_id, show_date, show_time) values (108
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (109, 10, 4, CURRENT_DATE + integer '4', '15:30');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (110, 10, 2, CURRENT_DATE + integer '6', '18:00');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (111, 10, 8, CURRENT_DATE + integer '6', '21:00');
+
+insert into seat (id, auditorium_id, row, number) values (1, 1, 1, 1);
+insert into seat (id, auditorium_id, row, number) values (2, 1, 1, 2);
+insert into seat (id, auditorium_id, row, number) values (3, 1, 1, 3);
+insert into seat (id, auditorium_id, row, number) values (4, 1, 1, 4);
+insert into seat (id, auditorium_id, row, number) values (5, 1, 1, 5);
+insert into seat (id, auditorium_id, row, number) values (6, 1, 1, 6);
+insert into seat (id, auditorium_id, row, number) values (7, 1, 1, 7);
+insert into seat (id, auditorium_id, row, number) values (8, 1, 1, 8);
+insert into seat (id, auditorium_id, row, number) values (9, 1, 1, 9);
+insert into seat (id, auditorium_id, row, number) values (10, 1, 1, 10);

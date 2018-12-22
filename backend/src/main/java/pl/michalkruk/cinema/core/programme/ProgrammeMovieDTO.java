@@ -8,12 +8,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ProgrammeMovieDTO {
-    private long id;
+    private Long id;
     private String title;
     private String genre;
     private String ageLimit;
-    private short duration;
-    private short releaseYear;
+    private Short duration;
+    private Short releaseYear;
     private String country;
     private String description;
     private String image;
@@ -23,7 +23,7 @@ public class ProgrammeMovieDTO {
 @Data
 @AllArgsConstructor
 class ShowDTO {
-    private long id;
+    private Long id;
     private String showDate;
     private String showTime;
 }

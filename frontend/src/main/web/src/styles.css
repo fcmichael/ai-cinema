@@ -3,3 +3,22 @@
 html {
   background-color: black;
 }
+
+.mat-checkbox-inner-container {
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.mat-checkbox-disabled .mat-checkbox-background {
+  background-color: red !important;
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+  background-color: greenyellow !important;
+}
+
+.mat-checkbox-checkmark {
+  display: none;
+}
+
+

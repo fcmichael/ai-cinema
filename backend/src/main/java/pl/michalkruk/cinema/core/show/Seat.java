@@ -5,28 +5,26 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Auditorium {
+public class Seat {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column
-    private String name;
+    @ManyToOne
+    private Auditorium auditorium;
 
-    @Column
-    private short rows;
+    private short row;
 
-    @Column
-    private short columns;
+    private short number;
 }

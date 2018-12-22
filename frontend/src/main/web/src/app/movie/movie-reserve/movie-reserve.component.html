@@ -1,3 +1,21 @@
-<p>
-  movie-reserve works!
-</p>
+<div class="main-container">
+  <div class="movie-info-container">
+    <div class="movie-info">
+      <div>Tytuł filmu: {{show?.movieTitle}}</div>
+      <div>Data i godzina: {{show?.showDate}}, {{show?.showTime}}</div>
+      <div>Sala: {{show?.auditoriumName}}</div>
+    </div>
+  </div>
+  <div class="border"></div>
+  <div class="movie-reservation-container">
+    <div class="screen">EKRAN</div>
+    <div class="seats-container">
+      <div *ngFor="let item of array(rowsCount); let i = index;">
+        <div class="seats-row-container">
+          <div *ngFor="let item of array(columnsCount); let j = index;">
+            <mat-checkbox class="seat" disableRipple></mat-checkbox>
+            <!--<mat-checkbox [disabled]="seats[i][j] == 1" class="seat" disableRipple></mat-checkbox>-->
+          </div>
+        </div>
+      </div>
+    </div>
