@@ -66,7 +66,7 @@
         <div class="movie-description">{{movie.description}}</div>
         <div class="movie-reservation-container">
           <div class="movie-reservation" *ngFor="let show of movie.shows">
-            <button class="reservation-button" mat-flat-button color="primary">{{show.showTime}}</button>
+            <button class="reservation-button" routerLink="/repertuar/{{show.id}}" mat-flat-button color="primary">{{show.showTime}}</button>
             <div class="reservation-border"></div>
           </div>
         </div>

@@ -10,13 +10,15 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
 import { PriceListComponent } from './price-list/price-list.component';
+import { MovieReserveComponent } from './movie/movie-reserve/movie-reserve.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
     NavbarComponent,
-    PriceListComponent
+    PriceListComponent,
+    MovieReserveComponent
   ],
   imports: [
     BrowserModule,
