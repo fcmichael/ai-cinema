@@ -12,9 +12,10 @@
     <div class="seats-container">
       <div *ngFor="let item of array(rowsCount); let i = index;">
         <div class="seats-row-container">
+          <div class="row-label">{{alphabet[i]}}</div>
           <div *ngFor="let item of array(columnsCount); let j = index;">
-            <mat-checkbox class="seat" disableRipple></mat-checkbox>
-            <!--<mat-checkbox [disabled]="seats[i][j] == 1" class="seat" disableRipple></mat-checkbox>-->
+            <mat-checkbox [disabled]="reservedSeats.includes(alphabet[i] + (j+1))" class="seat" disableRipple
+                          [value]="alphabet[i] + (j+1)"></mat-checkbox>
           </div>
         </div>
       </div>

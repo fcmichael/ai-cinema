@@ -1,11 +1,13 @@
 package pl.michalkruk.cinema.core.show;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,7 +46,25 @@ public class ShowControllerTest {
         Assert.assertEquals("A", show.getAuditoriumName());
         Assert.assertEquals(LocalDate.now().toString(), show.getShowDate());
         Assert.assertEquals("11:30", show.getShowTime());
-        Assert.assertEquals(Short.valueOf("9") , show.getAuditoriumRows());
-        Assert.assertEquals(Short.valueOf("18") , show.getAuditoriumColumns());
+        Assert.assertEquals(Short.valueOf("9"), show.getAuditoriumRows());
+        Assert.assertEquals(Short.valueOf("18"), show.getAuditoriumColumns());
+    }
+
+    @Test
+    public void should_return_reserved_seats_for_show() {
+        Long showId = 1L;
+        String url = baseUrl + "/" + showId + "/reservedSeats";
+
+        ResponseEntity<List<String>> responseEntity = restTemplate.exchange(url,
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<String>>() {
+                });
+
+        List<String> reservedSeats = responseEntity.getBody();
+
+        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assert.assertEquals(6, reservedSeats.size());
+        Assert.assertTrue(CollectionUtils.isEqualCollection(
+                Arrays.asList("A1", "A7", "A10", "A17", "A13", "A4"), reservedSeats));
+
     }
 }

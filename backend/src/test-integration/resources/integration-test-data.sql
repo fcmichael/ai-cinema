@@ -1,3 +1,4 @@
+delete from reserved_seat;
 delete from show;
 delete from movie;
 delete from auditorium;
@@ -46,3 +47,10 @@ insert into show (id, movie_id, auditorium_id, show_date, show_time) values (24,
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (25, 9, 5, CURRENT_DATE + integer '4', '19:00');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (26, 10, 4, CURRENT_DATE, '13:20');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (27, 10, 3, CURRENT_DATE + integer '2', '13:20');
+
+insert into reserved_seat(id, show_id, seat) values (1, 1, 'A1');
+insert into reserved_seat(id, show_id, seat) values (2, 1, 'A7');
+insert into reserved_seat(id, show_id, seat) values (3, 1, 'A10');
+insert into reserved_seat(id, show_id, seat) values (4, 1, 'A17');
+insert into reserved_seat(id, show_id, seat) values (5, 1, 'A13');
+insert into reserved_seat(id, show_id, seat) values (6, 1, 'A4');

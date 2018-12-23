@@ -11,22 +11,23 @@ import {switchMap} from "rxjs/operators";
 })
 export class MovieReserveComponent implements OnInit {
 
+  alphabet: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+    'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'X', 'Y', 'Z'];
+
   show: Show;
   rowsCount: number;
   columnsCount: number;
-
-  seats: number[][] = [
-    [1, 0, 1, 1, 1, 1, 0],
-    [0, 1, 1, 1, 0, 1, 1],
-    [0, 1, 0, 1, 0, 1, 0],
-    [1, 0, 1, 1, 0, 1, 0],
-    [1, 1, 1, 0, 0, 1, 1]
-  ];
+  reservedSeats: string[];
 
   constructor(private showService: ShowService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.getShow();
+    this.getReservedSeats();
+  }
+
+  private getShow() {
     this.route.paramMap.pipe(switchMap(params => {
         return this.showService.getShow(parseInt(params.get('id')));
       })
@@ -35,6 +36,13 @@ export class MovieReserveComponent implements OnInit {
       this.rowsCount = show.auditoriumRows;
       this.columnsCount = show.auditoriumColumns;
     });
+  }
+
+  private getReservedSeats() {
+    this.route.paramMap.pipe(switchMap(params => {
+        return this.showService.getReservedSeatsForShow(parseInt(params.get('id')));
+      })
+    ).subscribe(reservedSeats => this.reservedSeats = reservedSeats);
   }
 
   private array(n: number): number[] {

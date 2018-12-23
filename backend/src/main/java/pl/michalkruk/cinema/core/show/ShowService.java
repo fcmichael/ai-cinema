@@ -14,10 +14,12 @@ public class ShowService {
 
     private final ModelMapper modelMapper;
     private final ShowRepository showRepository;
+    private final ReservedSeatRepository reservedSeatRepository;
 
-    public ShowService(ModelMapper modelMapper, ShowRepository showRepository) {
+    public ShowService(ModelMapper modelMapper, ShowRepository showRepository, ReservedSeatRepository reservedSeatRepository) {
         this.modelMapper = modelMapper;
         this.showRepository = showRepository;
+        this.reservedSeatRepository = reservedSeatRepository;
     }
 
     public List<Show> findShowsByMovieAndDateAndTimeAfter(Movie movie, LocalDate date, LocalTime time) {
@@ -27,5 +29,9 @@ public class ShowService {
     ShowDTO findShowById(long id) {
         Show show = showRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return modelMapper.map(show, ShowDTO.class);
+    }
+
+    List<String> getReservedSeatsForShow(long id) {
+        return reservedSeatRepository.findSeatByShowId(id);
     }
 }

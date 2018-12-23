@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequestMapping("/shows")
 @RestController
 public class ShowController {
@@ -20,5 +22,11 @@ public class ShowController {
     public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") long id) {
         ShowDTO show = showService.findShowById(id);
         return ResponseEntity.status(HttpStatus.OK).body(show);
+    }
+
+    @RequestMapping("{id}/reservedSeats")
+    public ResponseEntity<List<String>> getReservedSeatsForShow(@PathVariable(name = "id") long id) {
+        List<String> reservedSeats = showService.getReservedSeatsForShow(id);
+        return ResponseEntity.status(HttpStatus.OK).body(reservedSeats);
     }
 }

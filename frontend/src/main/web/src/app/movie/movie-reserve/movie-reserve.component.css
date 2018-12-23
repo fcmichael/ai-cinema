@@ -38,6 +38,15 @@
   padding-top: 20px;
 }
 
+.row-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
 .seats-row-container {
   display: flex;
   flex-direction: row;

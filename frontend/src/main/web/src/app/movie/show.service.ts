@@ -14,12 +14,10 @@ export class ShowService {
   }
 
   getShow(id: number): Observable<Show> {
-    let path = '';
+    return this.httpClient.get<Show>(this.showUrl + '/' + id);
+  }
 
-    if (id != null) {
-      path = '/' + id;
-    }
-
-    return this.httpClient.get<Show>(this.showUrl + path);
+  getReservedSeatsForShow(id: number): Observable<string[]> {
+    return this.httpClient.get<string[]>(this.showUrl + '/' + id + '/reservedSeats');
   }
 }
