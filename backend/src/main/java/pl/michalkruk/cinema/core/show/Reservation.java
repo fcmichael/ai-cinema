@@ -5,14 +5,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class ReservedSeat {
+class Reservation {
 
     @Id
     @GeneratedValue
@@ -21,9 +25,7 @@ public class ReservedSeat {
     @ManyToOne
     private Show show;
 
-    @Column(length = 3)
-    private String seat;
+    private LocalDateTime timestamp;
 
-    @ManyToOne
-    private Reservation reservation;
+    private String clientsInfo;
 }

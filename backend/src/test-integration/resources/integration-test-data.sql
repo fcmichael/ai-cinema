@@ -1,4 +1,5 @@
 delete from reserved_seat;
+delete from reservation;
 delete from show;
 delete from movie;
 delete from auditorium;
@@ -48,9 +49,11 @@ insert into show (id, movie_id, auditorium_id, show_date, show_time) values (25,
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (26, 10, 4, CURRENT_DATE, '13:20');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (27, 10, 3, CURRENT_DATE + integer '2', '13:20');
 
-insert into reserved_seat(id, show_id, seat) values (1, 1, 'A1');
-insert into reserved_seat(id, show_id, seat) values (2, 1, 'A7');
-insert into reserved_seat(id, show_id, seat) values (3, 1, 'A10');
-insert into reserved_seat(id, show_id, seat) values (4, 1, 'A17');
-insert into reserved_seat(id, show_id, seat) values (5, 1, 'A13');
-insert into reserved_seat(id, show_id, seat) values (6, 1, 'A4');
+insert into reservation(id, show_id, timestamp, clients_info) values (101, 1, CURRENT_TIMESTAMP, 'Jan Nowak Warszawa');
+
+insert into reserved_seat(id, show_id, seat, reservation_id) values (101, 1, 'A1', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (102, 1, 'A4', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (103, 1, 'A7', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (104, 1, 'A10', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (105, 1, 'A13', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (106, 1, 'A17', 101);
