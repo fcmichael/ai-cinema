@@ -10,13 +10,22 @@
   <div class="movie-reservation-container">
     <div class="screen">EKRAN</div>
     <div class="seats-container">
-      <div *ngFor="let item of array(rowsCount); let i = index;">
+      <div *ngFor="let seatsRow of seats; let i = index;">
         <div class="seats-row-container">
           <div class="row-label">{{alphabet[i]}}</div>
-          <div *ngFor="let item of array(columnsCount); let j = index;">
-            <mat-checkbox [disabled]="reservedSeats.includes(alphabet[i] + (j+1))" class="seat" disableRipple
-                          [value]="alphabet[i] + (j+1)"></mat-checkbox>
+          <div *ngFor="let seat of seatsRow; let j = index;">
+            <mat-checkbox [disabled]="seat.reserved"
+                          class="seat"
+                          disableRipple
+                          [checked]="seat.checked"
+                          [value]="seat.name"
+                          (change)="seatChange(i, j, $event)"
+            ></mat-checkbox>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="border"></div>
+  <app-movie-reserve-form [selectedSeats]="selectedSeats"></app-movie-reserve-form>
+</div>

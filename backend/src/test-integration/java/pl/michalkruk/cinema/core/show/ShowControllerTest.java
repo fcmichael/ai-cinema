@@ -43,7 +43,7 @@ public class ShowControllerTest {
     private ReservedSeatRepository reservedSeatRepository;
 
     @Test
-    public void should_return_show_by_id() {
+    public void should_return_show_with_reserved_seats_by_id() {
         // given
         Long id = 1L;
         String url = baseUrl + "/" + id;
@@ -62,26 +62,27 @@ public class ShowControllerTest {
         Assert.assertEquals("11:30", show.getShowTime());
         Assert.assertEquals(Short.valueOf("9"), show.getAuditoriumRows());
         Assert.assertEquals(Short.valueOf("18"), show.getAuditoriumColumns());
-    }
-
-    @Test
-    public void should_return_reserved_seats_for_show() {
-        // given
-        Long showId = 1L;
-        String url = baseUrl + "/" + showId + "/reservedSeats";
-
-        // when
-        ResponseEntity<List<String>> responseEntity = restTemplate.exchange(url,
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<String>>() {
-                });
-        List<String> reservedSeats = responseEntity.getBody();
-
-        // then
-        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assert.assertEquals(6, reservedSeats.size());
+        Assert.assertEquals(6, show.getReservedSeats().size());
         Assert.assertTrue(CollectionUtils.isEqualCollection(
-                Arrays.asList("A1", "A7", "A10", "A17", "A13", "A4"), reservedSeats));
+                Arrays.asList("A1", "A7", "A10", "A17", "A13", "A4"), show.getReservedSeats()));
     }
+
+//    @Test
+//    public void should_return_reserved_seats_for_show() {
+//        // given
+//        Long showId = 1L;
+//        String url = baseUrl + "/" + showId + "/reservedSeats";
+//
+//        // when
+//        ResponseEntity<List<String>> responseEntity = restTemplate.exchange(url,
+//                HttpMethod.GET, null, new ParameterizedTypeReference<List<String>>() {
+//                });
+//        List<String> reservedSeats = responseEntity.getBody();
+//
+//        // then
+//        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//
+//    }
 
     @Test
     public void should_make_seats_reservation_for_show_if_seats_are_free() {

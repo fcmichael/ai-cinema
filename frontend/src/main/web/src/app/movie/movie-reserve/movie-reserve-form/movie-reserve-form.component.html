@@ -1,0 +1,52 @@
+<div class="main-container">
+  <div class="form-header">Formularz rezerwacji</div>
+  <div class="form-selected-seats">Wybrane miejsca: {{selectedSeats}}</div>
+  <div class="form">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+      <div>
+        <div>
+          <mat-form-field>
+            <input type="text"
+                   id="firstname"
+                   required
+                   matInput
+                   placeholder="Imię"
+                   name="firstname"
+                   [(ngModel)]="formFirstName">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="text"
+                   id="lastname"
+                   required
+                   matInput
+                   placeholder="Nazwisko"
+                   name="lastname"
+                   [(ngModel)]="formLastName">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="tel"
+                   pattern="[0-9]{9}"
+                   id="phonenumber"
+                   required
+                   matInput
+                   placeholder="Numer telefonu"
+                   name="phonenumber"
+                   [(ngModel)]="formPhoneNumber">
+          </mat-form-field>
+        </div>
+        <div class="button-container">
+          <button type="submit"
+                  mat-raised-button color="primary"
+                  disableRipple
+                  [disabled]="selectedSeats == undefined || selectedSeats.length == 0 || !loginForm.form.valid"
+          >Wyślij
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

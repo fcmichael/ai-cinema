@@ -6,7 +6,8 @@ export class Show {
     public showTime: string,
     public auditoriumName: string,
     public auditoriumRows: number,
-    public auditoriumColumns: number
+    public auditoriumColumns: number,
+    public reservedSeats: string[]
   ) {
 
   }

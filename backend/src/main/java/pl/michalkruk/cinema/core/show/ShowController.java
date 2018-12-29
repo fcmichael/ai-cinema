@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupied;
 
-import java.util.Set;
-
 @RequestMapping("/shows")
 @RestController
 public class ShowController {
@@ -19,7 +17,7 @@ public class ShowController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") long id) {
+    public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") long id) throws InterruptedException {
         ShowDTO show = showService.findShowById(id);
         return ResponseEntity.status(HttpStatus.OK).body(show);
     }
@@ -34,11 +32,5 @@ public class ShowController {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     "Przynajmniej jedno miejsce jest już zarezerwowane");
         }
-    }
-
-    @GetMapping("{id}/reservedSeats")
-    public ResponseEntity<Set<String>> getReservedSeatsForShow(@PathVariable(name = "id") long id) {
-        Set<String> reservedSeats = showService.getReservedSeatsForShow(id);
-        return ResponseEntity.status(HttpStatus.OK).body(reservedSeats);
     }
 }

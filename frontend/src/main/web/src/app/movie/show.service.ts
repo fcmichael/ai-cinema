@@ -16,8 +16,4 @@ export class ShowService {
   getShow(id: number): Observable<Show> {
     return this.httpClient.get<Show>(this.showUrl + '/' + id);
   }
-
-  getReservedSeatsForShow(id: number): Observable<string[]> {
-    return this.httpClient.get<string[]>(this.showUrl + '/' + id + '/reservedSeats');
-  }
 }

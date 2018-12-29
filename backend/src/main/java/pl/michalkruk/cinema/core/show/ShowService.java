@@ -34,7 +34,9 @@ public class ShowService {
 
     ShowDTO findShowById(long id) {
         Show show = showRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        return modelMapper.map(show, ShowDTO.class);
+        ShowDTO dto = modelMapper.map(show, ShowDTO.class);
+        dto.setReservedSeats(getReservedSeatsForShow(id));
+        return dto;
     }
 
     Set<String> getReservedSeatsForShow(long id) {
