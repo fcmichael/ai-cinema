@@ -67,23 +67,6 @@ public class ShowControllerTest {
                 Arrays.asList("A1", "A7", "A10", "A17", "A13", "A4"), show.getReservedSeats()));
     }
 
-//    @Test
-//    public void should_return_reserved_seats_for_show() {
-//        // given
-//        Long showId = 1L;
-//        String url = baseUrl + "/" + showId + "/reservedSeats";
-//
-//        // when
-//        ResponseEntity<List<String>> responseEntity = restTemplate.exchange(url,
-//                HttpMethod.GET, null, new ParameterizedTypeReference<List<String>>() {
-//                });
-//        List<String> reservedSeats = responseEntity.getBody();
-//
-//        // then
-//        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//
-//    }
-
     @Test
     public void should_make_seats_reservation_for_show_if_seats_are_free() {
         // given
