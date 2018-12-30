@@ -19,6 +19,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {PriceListComponent} from './price-list/price-list.component';
 import {MovieReserveComponent} from './movie/movie-reserve/movie-reserve.component';
 import {MovieReserveFormComponent} from './movie/movie-reserve/movie-reserve-form/movie-reserve-form.component';
+import { MovieReserveSuccessComponent } from './movie/movie-reserve/movie-reserve-success/movie-reserve-success.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MovieReserveFormComponent} from './movie/movie-reserve/movie-reserve-for
     NavbarComponent,
     PriceListComponent,
     MovieReserveComponent,
-    MovieReserveFormComponent
+    MovieReserveFormComponent,
+    MovieReserveSuccessComponent
   ],
   imports: [
     BrowserModule,

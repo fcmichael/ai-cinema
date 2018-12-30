@@ -18,8 +18,8 @@ export class ShowService {
     return this.httpClient.get<Show>(this.showUrl + '/' + id);
   }
 
-  makeReservation(id: number, form: ReservationForm) : Observable<ReservationForm>{
+  makeReservation(id: number, form: ReservationForm) : Observable<void>{
     let url = this.showUrl + "/" + id + "/reservations";
-    return this.httpClient.post<ReservationForm>(url, form);
+    return this.httpClient.post<void>(url, form);
   }
 }
