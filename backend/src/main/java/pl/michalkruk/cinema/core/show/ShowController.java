@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupied;
 
+import javax.validation.Valid;
+
 @RequestMapping("/shows")
 @RestController
 public class ShowController {
@@ -17,14 +19,14 @@ public class ShowController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") long id) throws InterruptedException {
+    public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") long id) {
         ShowDTO show = showService.findShowById(id);
         return ResponseEntity.status(HttpStatus.OK).body(show);
     }
 
     @PostMapping("/{id}/reservations")
     public ResponseEntity<ReservationDTO> makeReservation(@PathVariable(name = "id") long id,
-                                                          @RequestBody ReservationForm form) {
+                                                          @RequestBody @Valid ReservationForm form) {
         try {
             ReservationDTO reservation = showService.makeReservation(id, form);
             return ResponseEntity.status(HttpStatus.CREATED).body(reservation);

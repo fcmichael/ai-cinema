@@ -117,4 +117,25 @@ public class ShowControllerTest {
         Assert.assertEquals(reservationsCountBefore, reservationRepository.findAll().size());
         Assert.assertEquals(reservedSeatsCountBefore, reservedSeatRepository.findAll().size());
     }
+
+    @Test
+    public void should_not_make_seats_reservation_for_show_if_form_is_not_valid() {
+        // given
+        int reservationsCountBefore = reservationRepository.findAll().size();
+        int reservedSeatsCountBefore = reservedSeatRepository.findAll().size();
+
+        Long showId = 1L;
+        String url = baseUrl + "/" + showId + "/reservations";
+        ReservationForm form = new ReservationForm(null, null, null, null);
+        HttpEntity<ReservationForm> request = new HttpEntity<>(form);
+
+        // when
+        ResponseEntity<ReservationDTO> responseEntity = restTemplate.exchange(url,
+                HttpMethod.POST, request, ReservationDTO.class);
+
+        // then
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        Assert.assertEquals(reservationsCountBefore, reservationRepository.findAll().size());
+        Assert.assertEquals(reservedSeatsCountBefore, reservedSeatRepository.findAll().size());
+    }
 }
