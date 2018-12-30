@@ -49,7 +49,9 @@ public class ShowService {
             Reservation reservation = Reservation.builder()
                     .show(show)
                     .timestamp(LocalDateTime.now())
-                    .clientsInfo(form.getClientsInfo())
+                    .firstName(form.getFirstName())
+                    .lastName(form.getLastName())
+                    .phoneNumber(form.getPhoneNumber())
                     .build();
 
             reservationRepository.save(reservation);
@@ -58,7 +60,9 @@ public class ShowService {
 
             return ReservationDTO.builder()
                     .id(reservation.getId())
-                    .clientsInfo(reservation.getClientsInfo())
+                    .firstName(form.getFirstName())
+                    .lastName(form.getLastName())
+                    .phoneNumber(form.getPhoneNumber())
                     .showDate(reservation.getShow().getShowDate().toString())
                     .showTime(reservation.getShow().getShowTime().toString())
                     .movieTitle(reservation.getShow().getMovie().getTitle())

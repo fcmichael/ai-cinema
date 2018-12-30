@@ -11,5 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 class ReservationForm {
     private Set<String> seats;
-    private String clientsInfo;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
 }

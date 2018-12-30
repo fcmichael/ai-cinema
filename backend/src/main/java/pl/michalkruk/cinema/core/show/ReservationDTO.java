@@ -17,5 +17,7 @@ class ReservationDTO {
     private String showDate;
     private String showTime;
     private Set<String> reservedSeats;
-    private String clientsInfo;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
 }

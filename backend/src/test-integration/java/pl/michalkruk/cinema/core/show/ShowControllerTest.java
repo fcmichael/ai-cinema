@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -77,8 +75,7 @@ public class ShowControllerTest {
         Show show = showRepository.findById(showId).get();
         String url = baseUrl + "/" + showId + "/reservations";
         Set<String> seatsToReserve = new HashSet<>(Arrays.asList("H2", "H3", "H4"));
-        String clientsInfo = "Jan Nowak 01-222 Warszawa";
-        ReservationForm form = new ReservationForm(seatsToReserve, clientsInfo);
+        ReservationForm form = new ReservationForm(seatsToReserve, "Jan", "Nowak", "111111111");
         HttpEntity<ReservationForm> request = new HttpEntity<>(form);
 
         // when
@@ -88,7 +85,9 @@ public class ShowControllerTest {
 
         // then
         Assert.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        Assert.assertEquals(clientsInfo, reservation.getClientsInfo());
+        Assert.assertEquals("Jan", reservation.getFirstName());
+        Assert.assertEquals("Nowak", reservation.getLastName());
+        Assert.assertEquals("111111111", reservation.getPhoneNumber());
         Assert.assertEquals(reservationsCountBefore + 1, reservationRepository.findAll().size());
         Assert.assertEquals(reservedSeatsCountBefore + seatsToReserve.size(), reservedSeatRepository.findAll().size());
         Assert.assertEquals(show.getShowDate().toString(), reservation.getShowDate());
@@ -106,8 +105,7 @@ public class ShowControllerTest {
         Long showId = 1L;
         String url = baseUrl + "/" + showId + "/reservations";
         Set<String> seatsToReserve = new HashSet<>(Arrays.asList("A1", "A2"));
-        String clientsInfo = "Jan Nowak 01-222 Warszawa";
-        ReservationForm form = new ReservationForm(seatsToReserve, clientsInfo);
+        ReservationForm form = new ReservationForm(seatsToReserve, "Jan", "Nowak", "111111111");
         HttpEntity<ReservationForm> request = new HttpEntity<>(form);
 
         // when

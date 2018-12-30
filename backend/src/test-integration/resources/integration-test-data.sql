@@ -49,7 +49,7 @@ insert into show (id, movie_id, auditorium_id, show_date, show_time) values (25,
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (26, 10, 4, CURRENT_DATE, '13:20');
 insert into show (id, movie_id, auditorium_id, show_date, show_time) values (27, 10, 3, CURRENT_DATE + integer '2', '13:20');
 
-insert into reservation(id, show_id, timestamp, clients_info) values (101, 1, CURRENT_TIMESTAMP, 'Jan Nowak Warszawa');
+insert into reservation(id, show_id, timestamp, first_name, last_name, phone_number) values (101, 1, CURRENT_TIMESTAMP, 'Jan', 'Nowak', '111111111');
 
 insert into reserved_seat(id, show_id, seat, reservation_id) values (101, 1, 'A1', 101);
 insert into reserved_seat(id, show_id, seat, reservation_id) values (102, 1, 'A4', 101);
