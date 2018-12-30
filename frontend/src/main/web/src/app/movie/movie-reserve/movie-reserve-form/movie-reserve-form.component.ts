@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ReservationForm} from "./reservation-form";
+import {ShowService} from "../../show.service";
 
 @Component({
   selector: 'app-movie-reserve-form',
@@ -8,20 +9,20 @@ import {ReservationForm} from "./reservation-form";
 })
 export class MovieReserveFormComponent implements OnInit {
 
+  @Input() showId: number;
   @Input() selectedSeats: string[];
   formFirstName: string = '';
   formLastName: string = '';
   formPhoneNumber: string = '';
 
-  constructor() {
+  constructor(private showService: ShowService) {
   }
 
   ngOnInit() {
-    // this.selectedSeats = [];
   }
 
   onSubmit() {
-    alert("Thanks for submitting! Data: " + JSON.stringify(new ReservationForm(this.selectedSeats, this.formFirstName,
-      this.formLastName, this.formPhoneNumber)));
+    let form = new ReservationForm(this.selectedSeats, this.formFirstName, this.formLastName, this.formPhoneNumber);
+    this.showService.makeReservation(this.showId, form).subscribe();
   }
 }

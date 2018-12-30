@@ -27,8 +27,6 @@ class Reservation {
 
     private LocalDateTime timestamp;
 
-    private String clientsInfo;
-
     private String firstName;
 
     private String lastName;
