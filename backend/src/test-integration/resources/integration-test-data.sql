@@ -3,6 +3,7 @@ delete from reservation;
 delete from show;
 delete from movie;
 delete from auditorium;
+delete from ticket_type;
 
 insert into movie (id, title, genre, age_limit, duration, release_year, country, description, image_name) values (1, 'Skazani na Shawshank', 'DRAMAT', 'MIN_15', 142, 1994, 'USA', 'Film nakręcony na podstawie książki mistrza horrorów Stephena Kinga. Andy Dufresne (Tim Robbins), dobrze zarabiający bankier z Nowej Anglii, zostaje oskarżony o podwójne zabójstwo - swojej żony i jej kochanka. Uparcie twierdzi, że jest niewinny, ale dzięki niezbitym dowodom zostaje skazany na podwójne dożywocie w więzieniu Shawshank. Shawshank rządzi hipokryta i fanatyk biblijny, naczelnik Norton (Bob Gunton), a wraz z nim sadystyczni strażnicy. Andy już po kilku dniach poznaje brutalną, więzienną rzeczywistość, ale dzięki wrodzonej inteligencji, sprytowi oraz pomocy przyjaciela Ellisa Boyda "Reda" Reddinga (Morgan Freeman) udaje mu się zachować nadzieję, która pozwoli dokonać zemsty.', 'skazani_na_shawshank.jpg');
 insert into movie (id, title, genre, age_limit, duration, release_year, country, description, image_name) values (2, 'Zielona mila', 'DRAMAT', 'MIN_15', 188, 1999, 'USA', 'Rok 1935. Paul Edgecombe (Tom Hanks) jest jednym ze strażników bloku śmierci w więzieniu Cold Mountain. Do jego obowiązków należy odprowadzanie skazańców do celi śmierci długim korytarzem, wyłożonym zieloną wykładziną, zwaną "Zieloną milą". Pewnego dnia do więzienia przybywa olbrzymi czarnoskóry skazaniec, John Coffey (Michael Clarke Duncan). Ma oczekiwać na karę śmierci za zamordowanie dwóch białych dziewczynek. Jego wizyta na zawsze zmieni życie Paula i pozostałych pracowników więzienia.', 'zielona_mila.jpg');
@@ -57,3 +58,6 @@ insert into reserved_seat(id, show_id, seat, reservation_id) values (103, 1, 'A7
 insert into reserved_seat(id, show_id, seat, reservation_id) values (104, 1, 'A10', 101);
 insert into reserved_seat(id, show_id, seat, reservation_id) values (105, 1, 'A13', 101);
 insert into reserved_seat(id, show_id, seat, reservation_id) values (106, 1, 'A17', 101);
+
+insert into ticket_type(id, category, price) values (101, 'NORMALNY', 21);
+insert into ticket_type(id, category, price) values (102, 'ULGOWY', 14);

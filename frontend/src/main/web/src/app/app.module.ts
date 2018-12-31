@@ -7,7 +7,7 @@ import {
   MatCheckboxModule,
   MatIconModule,
   MatInputModule,
-  MatSelectModule
+  MatSelectModule, MatTableModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -16,7 +16,7 @@ import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import {NavbarComponent} from './navbar/navbar.component';
-import {PriceListComponent} from './price-list/price-list.component';
+import {PriceListComponent} from './ticket/price-list/price-list.component';
 import {MovieReserveComponent} from './movie/movie-reserve/movie-reserve.component';
 import {MovieReserveFormComponent} from './movie/movie-reserve/movie-reserve-form/movie-reserve-form.component';
 import { MovieReserveSuccessComponent } from './movie/movie-reserve/movie-reserve-success/movie-reserve-success.component';
@@ -42,7 +42,8 @@ import { MovieReserveSuccessComponent } from './movie/movie-reserve/movie-reserv
     FormsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,16 @@
+.main-container {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table {
+  width: 30%;
+}
+
+th {
+  font-size: 18px;
+  color: #c2185b;
+  background-color: black;
+}

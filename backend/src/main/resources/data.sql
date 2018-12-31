@@ -164,3 +164,8 @@ insert into reserved_seat(id, show_id, seat, reservation_id) values (-27, 1, 'F1
 insert into reserved_seat(id, show_id, seat, reservation_id) values (-28, 1, 'F12', -1);
 insert into reserved_seat(id, show_id, seat, reservation_id) values (-29, 1, 'F13', -1);
 insert into reserved_seat(id, show_id, seat, reservation_id) values (-30, 1, 'F14', -1);
+
+insert into ticket_type(id, category, price) values (-1, 'NORMALNY', 21);
+insert into ticket_type(id, category, price) values (-2, 'ULGOWY', 14);
+insert into ticket_type(id, category, price) values (-3, 'SENIOR', 14);
+insert into ticket_type(id, category, price) values (-4, 'STUDENCKI', 16);

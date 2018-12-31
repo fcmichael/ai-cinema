@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {MovieListComponent} from "./movie/movie-list/movie-list.component";
-import {PriceListComponent} from "./price-list/price-list.component";
+import {PriceListComponent} from "./ticket/price-list/price-list.component";
 import {MovieReserveComponent} from "./movie/movie-reserve/movie-reserve.component";
 import {MovieReserveSuccessComponent} from "./movie/movie-reserve/movie-reserve-success/movie-reserve-success.component";
 
