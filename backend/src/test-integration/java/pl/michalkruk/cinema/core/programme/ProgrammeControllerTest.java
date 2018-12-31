@@ -36,10 +36,12 @@ public class ProgrammeControllerTest {
 
     @Test
     public void should_return_all_movies_in_programme_tomorrow() {
+        // given
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(1));
 
+        // when
         ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
@@ -48,6 +50,7 @@ public class ProgrammeControllerTest {
         List<ProgrammeMovieDTO> movies = response.getBody();
         List<Long> moviesIds = movies.stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
+        // then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(1L, 2L, 4L, 5L, 8L), moviesIds));
         Assert.assertEquals(2, movies.get(0).getShows().size());
@@ -59,11 +62,13 @@ public class ProgrammeControllerTest {
 
     @Test
     public void should_return_all_movies_by_genre_in_programme_in_two_days() {
+        // given
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(2))
                 .queryParam("genre", "DRAMAT");
 
+        // when
         ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
@@ -72,6 +77,7 @@ public class ProgrammeControllerTest {
         List<ProgrammeMovieDTO> movies = response.getBody();
         List<Long> moviesIds = movies.stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
+        // then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(2L, 10L), moviesIds));
         Assert.assertEquals(1, movies.get(0).getShows().size());
@@ -80,11 +86,13 @@ public class ProgrammeControllerTest {
 
     @Test
     public void should_return_all_movies_by_country_in_programme_tomorrow() {
+        // given
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(1))
                 .queryParam("country", "POLAND");
 
+        // when
         ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
@@ -93,6 +101,7 @@ public class ProgrammeControllerTest {
         List<ProgrammeMovieDTO> movies = response.getBody();
         List<Long> moviesIds = movies.stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
+        // then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertEquals(Collections.singletonList(8L), moviesIds);
         Assert.assertEquals(3, movies.get(0).getShows().size());
@@ -100,11 +109,13 @@ public class ProgrammeControllerTest {
 
     @Test
     public void should_return_all_movies_by_release_year_in_programme_tomorrow() {
+        // given
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(1))
                 .queryParam("releaseYear", "1999");
 
+        // when
         ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
@@ -113,6 +124,7 @@ public class ProgrammeControllerTest {
         List<ProgrammeMovieDTO> movies = response.getBody();
         List<Long> moviesIds = movies.stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
+        // then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertEquals(Collections.singletonList(2L), moviesIds);
         Assert.assertEquals(1, movies.get(0).getShows().size());
@@ -120,6 +132,7 @@ public class ProgrammeControllerTest {
 
     @Test
     public void should_return_all_movies_by_genre_country_and_release_year_in_programme_in_four_days() {
+        // given
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(4))
@@ -127,6 +140,7 @@ public class ProgrammeControllerTest {
                 .queryParam("country", "USA")
                 .queryParam("releaseYear", "1994");
 
+        // when
         ResponseEntity<List<ProgrammeMovieDTO>> response =
                 restTemplate.exchange(builder.toUriString(),
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<ProgrammeMovieDTO>>() {
@@ -135,6 +149,7 @@ public class ProgrammeControllerTest {
         List<ProgrammeMovieDTO> movies = response.getBody();
         List<Long> moviesIds = movies.stream().map(ProgrammeMovieDTO::getId).collect(Collectors.toList());
 
+        // then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertEquals(Collections.singletonList(9L), moviesIds);
         Assert.assertEquals(2, movies.get(0).getShows().size());
