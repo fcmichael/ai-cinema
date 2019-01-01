@@ -4,12 +4,14 @@ import {MovieListComponent} from "./movie/movie-list/movie-list.component";
 import {PriceListComponent} from "./ticket/price-list/price-list.component";
 import {MovieReserveComponent} from "./movie/movie-reserve/movie-reserve.component";
 import {MovieReserveSuccessComponent} from "./movie/movie-reserve/movie-reserve-success/movie-reserve-success.component";
+import {EventListComponent} from "./event/event-list/event-list.component";
 
 const appRoutes: Routes = [
+  {path: 'cennik', component: PriceListComponent},
   {path: 'repertuar', component: MovieListComponent},
   {path: 'repertuar/:id/rezerwacja', component: MovieReserveComponent},
   {path: 'repertuar/:id/rezerwacja/sukces', component: MovieReserveSuccessComponent},
-  {path: 'cennik', component: PriceListComponent},
+  {path: 'wydarzenia', component: EventListComponent},
   {path: '', redirectTo: '/repertuar', pathMatch: 'full'}
 ];
 

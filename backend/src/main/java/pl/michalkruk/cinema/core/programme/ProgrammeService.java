@@ -22,7 +22,7 @@ public class ProgrammeService {
     private final ShowService showService;
     private final String imageLocation;
 
-    public ProgrammeService(MovieService movieService, ShowService showService, @Value("${images.location}") String imageLocation) {
+    public ProgrammeService(MovieService movieService, ShowService showService, @Value("${movie.images.location}") String imageLocation) {
         this.movieService = movieService;
         this.showService = showService;
         this.imageLocation = imageLocation;

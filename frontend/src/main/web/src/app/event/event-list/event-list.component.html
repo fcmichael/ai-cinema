@@ -1,0 +1,22 @@
+<div class="main-container">
+  <div class="event-container" *ngFor="let event of events">
+    <div class="event">
+      <div>
+        <div class="event-image">
+          <img [src]="event.image">
+        </div>
+        <div class="event-info">
+          <div class="event-title">{{event.title}}</div>
+          <div class="event-date">{{event.eventDate}}</div>
+          <div class="event-description">{{event.shortDescription}}</div>
+        </div>
+      </div>
+      <div class="button-container">
+        <button mat-flat-button
+                disableRipple
+                color="primary">SZCZEGÓŁY
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
