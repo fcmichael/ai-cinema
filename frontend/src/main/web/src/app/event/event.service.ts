@@ -15,19 +15,30 @@ export class EventService {
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
   }
 
+  getEvent(id: number): Observable<Event> {
+    return this.httpClient.get<Event>(this.eventUrl + '/' + id)
+      .pipe(map(event => {
+        return this.mapData(event);
+      }));
+  }
+
   getEvents(): Observable<Event[]> {
     return this.httpClient.get<Event[]>(this.eventUrl)
       .pipe(map((events: Event[]) => {
-        return events.map(r => {
-          return new Event(
-            r.id,
-            r.title,
-            r.eventDate,
-            r.shortDescription,
-            r.description,
-            this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image)
-          )
+        return events.map(event => {
+          return this.mapData(event);
         });
       }));
+  }
+
+  mapData(event: Event): Event {
+    return new Event(
+      event.id,
+      event.title,
+      event.eventDate,
+      event.shortDescription,
+      event.description.replace('\n', "<br>"),
+      this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + event.image)
+    )
   }
 }

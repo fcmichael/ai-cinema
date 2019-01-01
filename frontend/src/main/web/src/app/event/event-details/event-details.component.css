@@ -1,0 +1,36 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  white-space: pre-wrap;
+}
+
+.border {
+  width: 25%;
+}
+
+.event-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.event-title {
+  font-size: 36px;
+  font-family: "DejaVu Serif", sans-serif;
+}
+
+.event-image > img {
+  width: 700px;
+  height: 350px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 30px;
+}
+
+.event-date {
+  font-size: 20px;
+  padding-bottom: 30px;
+  color: #c2185b;
+}

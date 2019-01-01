@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.michalkruk.cinema.util.FileService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,11 @@ public class EventService {
     public EventService(EventRepository eventRepository, @Value("${event.images.location}") String imageLocation) {
         this.eventRepository = eventRepository;
         this.imageLocation = imageLocation;
+    }
+
+    EventDTO findEventById(Long id) {
+        Event event = eventRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return mapToDTO(event);
     }
 
     List<EventDTO> findEvents() {
