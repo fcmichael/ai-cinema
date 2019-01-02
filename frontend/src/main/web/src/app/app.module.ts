@@ -22,6 +22,7 @@ import {MovieReserveFormComponent} from './movie/movie-reserve/movie-reserve-for
 import { MovieReserveSuccessComponent } from './movie/movie-reserve/movie-reserve-success/movie-reserve-success.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import { EventDetailsComponent } from './event/event-details/event-details.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EventDetailsComponent } from './event/event-details/event-details.compo
     MovieReserveFormComponent,
     MovieReserveSuccessComponent,
     EventListComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

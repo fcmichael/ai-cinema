@@ -1,0 +1,39 @@
+<div class="main-container">
+  <div class="form-header">Formularz logowania</div>
+  <div class="form">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+      <div>
+        <div>
+          <mat-form-field>
+            <input type="email"
+                   id="email"
+                   required
+                   matInput
+                   placeholder="Email"
+                   name="email"
+                   [(ngModel)]="model.email">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="password"
+                   id="password"
+                   required
+                   matInput
+                   placeholder="Hasło"
+                   name="password"
+                   [(ngModel)]="model.password">
+          </mat-form-field>
+        </div>
+        <div class="button-container">
+          <button type="submit"
+                  mat-raised-button color="primary"
+                  disableRipple
+                  [disabled]="!loginForm.form.valid"
+          >Zaloguj
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
