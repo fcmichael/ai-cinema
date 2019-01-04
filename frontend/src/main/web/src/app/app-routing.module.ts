@@ -6,7 +6,7 @@ import {MovieReserveComponent} from "./movie/movie-reserve/movie-reserve.compone
 import {MovieReserveSuccessComponent} from "./movie/movie-reserve/movie-reserve-success/movie-reserve-success.component";
 import {EventListComponent} from "./event/event-list/event-list.component";
 import {EventDetailsComponent} from "./event/event-details/event-details.component";
-import {LoginComponent} from "./login/login.component";
+import {LoginComponent} from "./security/login/login.component";
 
 const appRoutes: Routes = [
   {path: 'cennik', component: PriceListComponent},

@@ -1,13 +1,14 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCheckboxModule,
   MatIconModule,
   MatInputModule,
-  MatSelectModule, MatTableModule
+  MatSelectModule,
+  MatTableModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -19,10 +20,16 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {PriceListComponent} from './ticket/price-list/price-list.component';
 import {MovieReserveComponent} from './movie/movie-reserve/movie-reserve.component';
 import {MovieReserveFormComponent} from './movie/movie-reserve/movie-reserve-form/movie-reserve-form.component';
-import { MovieReserveSuccessComponent } from './movie/movie-reserve/movie-reserve-success/movie-reserve-success.component';
-import { EventListComponent } from './event/event-list/event-list.component';
-import { EventDetailsComponent } from './event/event-details/event-details.component';
-import { LoginComponent } from './login/login.component';
+import {MovieReserveSuccessComponent} from './movie/movie-reserve/movie-reserve-success/movie-reserve-success.component';
+import {EventListComponent} from './event/event-list/event-list.component';
+import {EventDetailsComponent} from './event/event-details/event-details.component';
+import {LoginComponent} from './security/login/login.component';
+import {JwtInterceptor} from "./security/jwt-interceptor";
+import {JwtModule} from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -49,9 +56,17 @@ import { LoginComponent } from './login/login.component';
     MatIconModule,
     MatCheckboxModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        authScheme: 'JWT'
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

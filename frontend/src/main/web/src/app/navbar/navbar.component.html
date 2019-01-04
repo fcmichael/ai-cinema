@@ -8,10 +8,16 @@
       <mat-button-toggle routerLink="/cennik" routerLinkActive="mat-button-toggle-checked" disableRipple>CENNIK</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
-  <div class="login">
+  <div *ngIf="!authenticationService.isLoggedIn()" class="login">
     <button class="login-button" mat-flat-button routerLink="/zaloguj">
       <i class="material-icons white">person_outline</i>
       <span>ZALOGUJ</span>
+    </button>
+  </div>
+  <div *ngIf="authenticationService.isLoggedIn()" class="login">
+    <button class="login-button" mat-flat-button (click)="authenticationService.logout()">
+      <i class="material-icons white">meeting_room</i>
+      <span>{{authenticationService.getUsername()}}</span>
     </button>
   </div>
 </div>

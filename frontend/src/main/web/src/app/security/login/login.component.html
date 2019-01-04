@@ -1,17 +1,17 @@
 <div class="main-container">
   <div class="form-header">Formularz logowania</div>
   <div class="form">
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+    <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
       <div>
         <div>
           <mat-form-field>
-            <input type="email"
-                   id="email"
+            <input type="text"
+                   id="username"
                    required
                    matInput
-                   placeholder="Email"
-                   name="email"
-                   [(ngModel)]="model.email">
+                   placeholder="Nazwa użytkownika"
+                   name="username"
+                   [(ngModel)]="model.username">
           </mat-form-field>
         </div>
         <div>
@@ -35,5 +35,8 @@
         </div>
       </div>
     </form>
+    <div *ngIf="unsuccessfulLogin" class="unsuccessful-login">
+      Niepoprawne dane logowania
+    </div>
   </div>
 </div>
