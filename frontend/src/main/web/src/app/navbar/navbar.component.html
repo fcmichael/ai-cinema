@@ -3,9 +3,9 @@
   <div class="button-container">
     <mat-button-toggle-group>
       <mat-button-toggle routerLink="/repertuar" routerLinkActive="mat-button-toggle-checked" disableRipple>REPERTUAR</mat-button-toggle>
-      <!--<mat-button-toggle disableRipple>WKRÓTCE</mat-button-toggle>-->
       <mat-button-toggle routerLink="/wydarzenia" routerLinkActive="mat-button-toggle-checked" disableRipple>WYDARZENIA</mat-button-toggle>
       <mat-button-toggle routerLink="/cennik" routerLinkActive="mat-button-toggle-checked" disableRipple>CENNIK</mat-button-toggle>
+      <mat-button-toggle *ngIf="authenticationService.isLoggedIn()" routerLink="/admin" routerLinkActive="mat-button-toggle-checked" disableRipple>ZARZĄDZAJ</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
   <div *ngIf="!authenticationService.isLoggedIn()" class="login">

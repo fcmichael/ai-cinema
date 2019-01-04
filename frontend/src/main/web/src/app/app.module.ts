@@ -26,6 +26,13 @@ import {EventDetailsComponent} from './event/event-details/event-details.compone
 import {LoginComponent} from './security/login/login.component';
 import {JwtInterceptor} from "./security/jwt-interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
+import { AdminComponent } from './admin/admin.component';
+import { AdminMovieComponent } from './admin/admin-movie/admin-movie.component';
+import { AdminProgrammeComponent } from './admin/admin-programme/admin-programme.component';
+import { AdminEventComponent } from './admin/admin-event/admin-event.component';
+import { AdminPriceListComponent } from './admin/admin-price-list/admin-price-list.component';
+import { AdminUserComponent } from './admin/admin-user/admin-user.component';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -42,7 +49,14 @@ export function tokenGetter() {
     MovieReserveSuccessComponent,
     EventListComponent,
     EventDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent,
+    AdminMovieComponent,
+    AdminProgrammeComponent,
+    AdminEventComponent,
+    AdminPriceListComponent,
+    AdminUserComponent,
+    AdminNavbarComponent
   ],
   imports: [
     BrowserModule,
