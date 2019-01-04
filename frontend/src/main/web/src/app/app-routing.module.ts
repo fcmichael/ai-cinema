@@ -7,16 +7,43 @@ import {MovieReserveSuccessComponent} from "./movie/movie-reserve/movie-reserve-
 import {EventListComponent} from "./event/event-list/event-list.component";
 import {EventDetailsComponent} from "./event/event-details/event-details.component";
 import {LoginComponent} from "./security/login/login.component";
+import {LoginGuard} from "./security/guard/login.guard";
 
 const appRoutes: Routes = [
-  {path: 'cennik', component: PriceListComponent},
-  {path: 'repertuar', component: MovieListComponent},
-  {path: 'repertuar/:id/rezerwacja', component: MovieReserveComponent},
-  {path: 'repertuar/:id/rezerwacja/sukces', component: MovieReserveSuccessComponent},
-  {path: 'wydarzenia', component: EventListComponent},
-  {path: 'wydarzenia/:id', component: EventDetailsComponent},
-  {path: 'zaloguj', component: LoginComponent},
-  {path: '', redirectTo: '/repertuar', pathMatch: 'full'}
+  {
+    path: 'cennik',
+    component: PriceListComponent
+  },
+  {
+    path: 'repertuar',
+    component: MovieListComponent
+  },
+  {
+    path: 'repertuar/:id/rezerwacja',
+    component: MovieReserveComponent
+  },
+  {
+    path: 'repertuar/:id/rezerwacja/sukces',
+    component: MovieReserveSuccessComponent
+  },
+  {
+    path: 'wydarzenia',
+    component: EventListComponent
+  },
+  {
+    path: 'wydarzenia/:id',
+    component: EventDetailsComponent
+  },
+  {
+    path: 'zaloguj',
+    component: LoginComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: '',
+    redirectTo: '/repertuar',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {User} from "./user";
 import {map} from "rxjs/operators";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
@@ -11,7 +10,6 @@ import {TOKEN_NAME} from "./authentication.constant";
 })
 export class AuthenticationService {
 
-  user: User = new User('', '');
   loginUrl: string = 'http://localhost:8080/login';
 
   constructor(private httpClient: HttpClient,
@@ -20,11 +18,13 @@ export class AuthenticationService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.user.token && !this.jwtHelper.isTokenExpired(this.user.token);
+    let token = this.getToken();
+    return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 
   getUsername(): string {
-    return this.user.username;
+    let auth = this.jwtHelper.decodeToken(this.getToken());
+    return auth.sub;
   }
 
   login(username: string, password: string) {
@@ -33,8 +33,6 @@ export class AuthenticationService {
         let token = resp.headers.get("Authorization");
 
         if (token) {
-          let auth = this.jwtHelper.decodeToken(token);
-          this.user = new User(auth.sub, token);
           localStorage.setItem(TOKEN_NAME, token);
         }
 
@@ -43,12 +41,12 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.user = new User('', '');
     localStorage.removeItem(TOKEN_NAME);
     this.router.navigate(['/']);
   }
 
-  getCurrentUser(): User {
-    return this.user;
+  getToken() {
+    return localStorage.getItem(TOKEN_NAME);
   }
+
 }
