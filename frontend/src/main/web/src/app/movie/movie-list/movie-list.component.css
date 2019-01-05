@@ -12,17 +12,17 @@
 }
 
 .programme-day-filter-header {
+  width:20%;
   color: white;
   justify-content: left;
   align-items: center;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 1px;
   font-size: 18px;
-  flex-grow: 1;
 }
 
 .programme-day-filter-button-container {
-  flex-grow: 1;
+  width:80%;
 }
 
 .movie-filter-container {
@@ -34,7 +34,7 @@
 }
 
 .movie-filter-header {
-  flex-grow: 5;
+  width:20%;
   color: white;
   display: flex;
   justify-content: left;
@@ -42,6 +42,12 @@
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 1px;
   font-size: 18px;
+}
+
+.filter {
+  width: 80%;
+  display:flex;
+  flex-direction: row;
 }
 
 .movie-filter {
@@ -121,11 +127,15 @@
   width: 110px;
 }
 
-.border {
-  flex-grow: 3;
-}
-
 .mat-button-toggle-checked {
   background-color: #c2185b;
   color: white;
+}
+
+.mat-button-toggle-group {
+  width: 100%;
+}
+
+.mat-button-toggle{
+  width:100%;
 }
