@@ -1,26 +1,21 @@
 package pl.michalkruk.cinema.core.ticket;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class TicketTypeService {
 
-    private final ModelMapper modelMapper;
     private final TicketTypeRepository ticketTypeRepository;
 
-    public TicketTypeService(ModelMapper modelMapper, TicketTypeRepository ticketTypeRepository) {
-        this.modelMapper = modelMapper;
+    public TicketTypeService(TicketTypeRepository ticketTypeRepository) {
         this.ticketTypeRepository = ticketTypeRepository;
     }
 
-    List<TicketTypeDTO> findAllTicketTypes() {
-        List<TicketType> all = ticketTypeRepository.findAll();
-        return all.stream()
-                .map(type -> modelMapper.map(type, TicketTypeDTO.class))
-                .collect(Collectors.toList());
+    public List<TicketType> findAll() {
+        return ticketTypeRepository.findAll();
     }
 }

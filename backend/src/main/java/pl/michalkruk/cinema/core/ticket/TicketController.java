@@ -12,15 +12,15 @@ import java.util.List;
 @RequestMapping("/tickets")
 public class TicketController {
 
-    private final TicketTypeService ticketTypeService;
+    private final TicketFacade ticketFacade;
 
-    public TicketController(TicketTypeService ticketTypeService) {
-        this.ticketTypeService = ticketTypeService;
+    public TicketController(TicketFacade ticketFacade) {
+        this.ticketFacade = ticketFacade;
     }
 
     @GetMapping("/types")
     public ResponseEntity<List<TicketTypeDTO>> getAllTicketTypes() {
-        List<TicketTypeDTO> ticketTypes = ticketTypeService.findAllTicketTypes();
+        List<TicketTypeDTO> ticketTypes = ticketFacade.findAllTicketTypes();
         return ResponseEntity.status(HttpStatus.OK).body(ticketTypes);
     }
 }
