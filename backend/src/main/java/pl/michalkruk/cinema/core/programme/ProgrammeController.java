@@ -24,7 +24,7 @@ public class ProgrammeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProgrammeMovieDTO>> findAllCurrentlyPlayed(
+    public ResponseEntity<List<ProgrammeMovieDTO>> getAllCurrentlyPlayed(
             @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             @RequestParam(value = "genre", required = false) Genre genre,
             @RequestParam(value = "country", required = false) Country country,
