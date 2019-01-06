@@ -10,9 +10,19 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MovieService {
 
-  private movieUrl: string = 'http://localhost:8080/programme';
+  private programmeUrl: string = 'http://localhost:8080/programme';
+  private movieUrl: string = 'http://localhost:8080/movies';
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
+  }
+
+  getAllMovies(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(this.movieUrl)
+      .pipe(map((movies: Movie[]) => {
+        return movies.map(r => {
+          return this.mapMovie(r);
+        });
+      }));
   }
 
   getMoviesByGenreAndCountryAndReleaseYearAndDay(
@@ -36,22 +46,26 @@ export class MovieService {
       params = params.append('releaseYear', releaseYear);
     }
 
-    return this.httpClient.get<Movie[]>(this.movieUrl, {params: params})
+    return this.httpClient.get<Movie[]>(this.programmeUrl, {params: params})
       .pipe(map((movies: Movie[]) => {
         return movies.map(r => {
-          return new Movie(
-            r.id,
-            r.title,
-            r.genre,
-            r.ageLimit,
-            r.duration,
-            r.releaseYear,
-            r.country,
-            r.description,
-            this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image),
-            r.shows
-          )
+          return this.mapMovie(r);
         });
       }));
+  }
+
+  private mapMovie(movie: Movie): Movie {
+    return new Movie(
+      movie.id,
+      movie.title,
+      movie.genre,
+      movie.ageLimit,
+      movie.duration,
+      movie.releaseYear,
+      movie.country,
+      movie.description,
+      this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + movie.image),
+      movie.shows
+    )
   }
 }

@@ -33,6 +33,7 @@ import { AdminEventComponent } from './admin/admin-event/admin-event.component';
 import { AdminPriceListComponent } from './admin/admin-price-list/admin-price-list.component';
 import { AdminUserComponent } from './admin/admin-user/admin-user.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { MovieDatatableComponent } from './movie/movie-datatable/movie-datatable.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -56,7 +57,8 @@ export function tokenGetter() {
     AdminEventComponent,
     AdminPriceListComponent,
     AdminUserComponent,
-    AdminNavbarComponent
+    AdminNavbarComponent,
+    MovieDatatableComponent,
   ],
   imports: [
     BrowserModule,

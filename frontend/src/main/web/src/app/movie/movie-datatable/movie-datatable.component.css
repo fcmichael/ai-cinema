@@ -1,4 +1,4 @@
-.main-container {
+.movie-table {
   color: white;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@
 }
 
 table {
-  width: 30%;
+  width: 100%;
 }
 
 th {
@@ -15,10 +15,18 @@ th {
   background-color: black;
 }
 
-th.mat-header-cell{
+th.mat-header-cell {
   text-align: center;
 }
 
 td {
   text-align: center;
+}
+
+button.edit-button.mat-raised-button {
+  background-color: blue;
+}
+
+button.delete-button.mat-raised-button {
+  background-color: red;
 }

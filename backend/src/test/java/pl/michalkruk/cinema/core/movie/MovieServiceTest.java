@@ -23,7 +23,7 @@ public class MovieServiceTest {
     @Before
     public void init() {
         this.movieRepository = mock(MovieRepository.class);
-        this.movieService = new MovieService(movieRepository);
+        this.movieService = new MovieService(movieRepository, "");
         this.movies = new ArrayList<>();
 
         this.movies.add(Movie.builder().id(1L).title("A").genre(ANIMOWANY).releaseYear((short) 2018).country(USA).build());
