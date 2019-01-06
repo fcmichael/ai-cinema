@@ -13,21 +13,21 @@ import java.util.List;
 @RequestMapping("/events")
 public class EventController {
 
-    private final EventService eventService;
+    private final EventFacade eventFacade;
 
-    public EventController(EventService eventService) {
-        this.eventService = eventService;
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<EventDTO> getEvent(@PathVariable(name = "id") Long id){
-        EventDTO event = eventService.findEventById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(event);
+    public EventController(EventFacade eventFacade) {
+        this.eventFacade = eventFacade;
     }
 
     @GetMapping
-    public ResponseEntity<List<EventDTO>> getEvents() {
-        List<EventDTO> events = eventService.findEvents();
+    public ResponseEntity<List<EventDTO>> getAllEvents() {
+        List<EventDTO> events = eventFacade.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(events);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EventDTO> getEvent(@PathVariable(name = "id") Long id) {
+        EventDTO event = eventFacade.findEventById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(event);
     }
 }
