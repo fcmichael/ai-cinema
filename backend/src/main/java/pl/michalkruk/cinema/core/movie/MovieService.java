@@ -1,34 +1,23 @@
 package pl.michalkruk.cinema.core.movie;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import pl.michalkruk.cinema.core.programme.ProgrammeMovieDTO;
-import pl.michalkruk.cinema.util.FileService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class MovieService {
 
     private final MovieRepository movieRepository;
-    private final String imageLocation;
 
-    public MovieService(MovieRepository movieRepository, @Value("${movie.images.location}") String imageLocation) {
+    public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
-        this.imageLocation = imageLocation;
-    }
-
-    public List<MovieDTO> findAllDTO() {
-        return findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
     public List<Movie> findAll() {
         return movieRepository.findAll();
-    }
-
-    public List<Movie> findAll(Genre genre, Country country, String releaseYear) {
-        return findByGenreCountryAndReleaseYear(genre, country, releaseYear);
     }
 
     public List<Movie> findByGenreCountryAndReleaseYear(Genre genre, Country country, String releaseYear) {
@@ -39,15 +28,4 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
-    private MovieDTO mapToDTO(Movie movie) {
-        return new MovieDTO(movie.getId(),
-                movie.getTitle(),
-                movie.getGenre().toString(),
-                movie.getAgeLimit().toString(),
-                movie.getDuration(),
-                movie.getReleaseYear(),
-                movie.getCountry().toString(),
-                movie.getDescription(),
-                FileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
-    }
 }

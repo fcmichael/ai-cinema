@@ -12,15 +12,15 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private final MovieService movieService;
+    private final MovieFacade movieFacade;
 
-    public MovieController(MovieService movieService) {
-        this.movieService = movieService;
+    public MovieController(MovieFacade movieFacade) {
+        this.movieFacade = movieFacade;
     }
 
     @GetMapping
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
-        List<MovieDTO> all = movieService.findAllDTO();
+        List<MovieDTO> all = movieFacade.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(all);
     }
 
