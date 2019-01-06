@@ -10,7 +10,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MovieService {
 
-  private programmeUrl: string = 'http://localhost:8080/programme';
+  private programmeUrl: string = 'http://localhost:8080/programmes';
   private movieUrl: string = 'http://localhost:8080/movies';
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {

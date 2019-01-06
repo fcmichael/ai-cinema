@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/programme")
+@RequestMapping("/programmes")
 public class ProgrammeController {
 
     private final ProgrammeService programmeService;

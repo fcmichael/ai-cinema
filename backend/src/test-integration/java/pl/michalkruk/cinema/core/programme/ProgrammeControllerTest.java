@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @TestPropertySource(locations = "classpath:application-integration-test.properties")
 public class ProgrammeControllerTest {
 
-    private final String baseUrl = "/programme";
+    private final String baseUrl = "/programmes";
 
     @Autowired
     private TestRestTemplate restTemplate;
