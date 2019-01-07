@@ -1,8 +1,8 @@
 package pl.michalkruk.cinema.core.movie;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +23,11 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
+    Movie findById(Long id) {
+        return movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    }
+
     List<Movie> findAll() {
         return movieRepository.findAll();
     }
-
 }

@@ -3,6 +3,7 @@ package pl.michalkruk.cinema.core.movie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +25,9 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.OK).body(all);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieDTO> getById(@PathVariable(name = "id") Long id){
+        MovieDTO movie = movieFacade.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(movie);
+    }
 }

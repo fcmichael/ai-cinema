@@ -15,6 +15,9 @@ import {AdminEventComponent} from "./admin/admin-event/admin-event.component";
 import {AdminPriceListComponent} from "./admin/admin-price-list/admin-price-list.component";
 import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
 import {ProgrammeComponent} from "./programme/programme.component";
+import {MovieFormComponent} from "./movie/movie-form/movie-form.component";
+import {MovieEditComponent} from "./movie/movie-edit/movie-edit.component";
+import {MovieAddComponent} from "./movie/movie-add/movie-add.component";
 
 const appRoutes: Routes = [
   {
@@ -30,6 +33,14 @@ const appRoutes: Routes = [
       {
         path: 'filmy',
         component: AdminMovieComponent
+      },
+      {
+        path: 'filmy/edycja/:id',
+        component: MovieEditComponent
+      },
+      {
+        path: 'filmy/nowy',
+        component: MovieAddComponent
       },
       {
         path: 'repertuar',

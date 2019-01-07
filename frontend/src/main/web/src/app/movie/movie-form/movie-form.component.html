@@ -1,0 +1,28 @@
+<div class="main-container">
+  <div class="form-header">{{formTitle}}</div>
+  <div class="form">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+      <div>
+        <div>
+          <mat-form-field>
+            <input type="text"
+                   id="title"
+                   required
+                   matInput
+                   placeholder="Tytuł"
+                   name="title"
+                   [(ngModel)]="movie.title">
+          </mat-form-field>
+        </div>
+        <div class="button-container">
+          <button type="submit"
+                  mat-raised-button color="primary"
+                  disableRipple
+                  [disabled]="!loginForm.form.valid"
+          >Wyślij
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

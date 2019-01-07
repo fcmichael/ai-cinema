@@ -44,14 +44,7 @@
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef>Edytuj</th>
         <td mat-cell *matCellDef="let movie">
-          <button class="edit-button" mat-raised-button disableRipple>Edytuj</button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef>Usuń</th>
-        <td mat-cell *matCellDef="let movie">
-          <button class="delete-button" mat-raised-button disableRipple>Usuń</button>
+          <button class="edit-button" routerLink="/admin/filmy/edycja/{{movie.id}}" mat-raised-button disableRipple>Edytuj</button>
         </td>
       </ng-container>
 

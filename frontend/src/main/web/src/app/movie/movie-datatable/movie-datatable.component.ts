@@ -11,7 +11,7 @@ export class MovieDatatableComponent implements OnInit {
 
   movies: Movie[];
   displayedColumns: string[] = ['id', 'title', 'genre', 'ageLimit', 'duration', 'releaseYear',
-    'country', 'edit', 'delete'];
+    'country', 'edit'];
 
   constructor(private movieService: MovieService) {
   }

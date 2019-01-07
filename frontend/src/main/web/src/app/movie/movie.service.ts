@@ -24,6 +24,14 @@ export class MovieService {
       }));
   }
 
+  getMovieById(id: number): Observable<Movie> {
+    const url = this.movieUrl + '/' + id;
+    return this.httpClient.get<Movie>(url)
+      .pipe(map((movie: Movie) => {
+        return this.mapMovie(movie);
+      }));
+  }
+
   private mapMovie(movie: Movie): Movie {
     return new Movie(
       movie.id,

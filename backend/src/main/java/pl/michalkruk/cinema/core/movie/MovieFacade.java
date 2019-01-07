@@ -20,6 +20,11 @@ public class MovieFacade {
     }
 
     @Transactional(readOnly = true)
+    public MovieDTO findById(Long id) {
+        return mapToDTO(movieService.findById(id));
+    }
+
+    @Transactional(readOnly = true)
     public List<MovieDTO> findAll() {
         return mapToDTO(movieService.findAll());
     }

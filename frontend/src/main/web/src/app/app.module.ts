@@ -34,6 +34,9 @@ import {AdminUserComponent} from './admin/admin-user/admin-user.component';
 import {AdminNavbarComponent} from './admin/admin-navbar/admin-navbar.component';
 import {MovieDatatableComponent} from './movie/movie-datatable/movie-datatable.component';
 import {ProgrammeComponent} from './programme/programme.component';
+import { MovieFormComponent } from './movie/movie-form/movie-form.component';
+import { MovieEditComponent } from './movie/movie-edit/movie-edit.component';
+import { MovieAddComponent } from './movie/movie-add/movie-add.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -59,6 +62,9 @@ export function tokenGetter() {
     AdminNavbarComponent,
     MovieDatatableComponent,
     ProgrammeComponent,
+    MovieFormComponent,
+    MovieEditComponent,
+    MovieAddComponent,
   ],
   imports: [
     BrowserModule,

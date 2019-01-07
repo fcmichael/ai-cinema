@@ -26,7 +26,3 @@ td {
 button.edit-button.mat-raised-button {
   background-color: blue;
 }
-
-button.delete-button.mat-raised-button {
-  background-color: red;
-}
