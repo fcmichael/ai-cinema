@@ -3,7 +3,6 @@ package pl.michalkruk.cinema.core.show;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.modelmapper.ModelMapper;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,23 +11,16 @@ import java.util.Set;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ShowServiceTest {
+public class ReservedSeatServiceTest {
 
-    private ShowService showService;
+    private ReservedSeatService reservedSeatService;
 
-    private ModelMapper modelMapper;
-    private ShowRepository showRepository;
     private ReservedSeatRepository reservedSeatRepository;
-    private ReservationRepository reservationRepository;
 
     @Before
     public void init() {
-        this.modelMapper = mock(ModelMapper.class);
-        this.showRepository = mock(ShowRepository.class);
         this.reservedSeatRepository = mock(ReservedSeatRepository.class);
-        this.reservationRepository = mock(ReservationRepository.class);
-        this.showService = new ShowService(modelMapper,
-                showRepository, reservedSeatRepository, reservationRepository);
+        this.reservedSeatService = new ReservedSeatService(reservedSeatRepository);
     }
 
     @Test
@@ -40,7 +32,7 @@ public class ShowServiceTest {
         when(reservedSeatRepository.findSeatByShowId(showId)).thenReturn(reservedSeats);
 
         // when
-        boolean areAllFree = showService.areAllSeatsFree(showId, seatsToReserve);
+        boolean areAllFree = reservedSeatService.areAllSeatsFree(showId, seatsToReserve);
 
         // then
         Assert.assertTrue(areAllFree);
@@ -55,7 +47,7 @@ public class ShowServiceTest {
         when(reservedSeatRepository.findSeatByShowId(showId)).thenReturn(reservedSeats);
 
         // when
-        boolean areAllFree = showService.areAllSeatsFree(showId, seatsToReserve);
+        boolean areAllFree = reservedSeatService.areAllSeatsFree(showId, seatsToReserve);
 
         // then
         Assert.assertFalse(areAllFree);

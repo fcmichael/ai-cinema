@@ -12,23 +12,23 @@ import javax.validation.Valid;
 @RestController
 public class ShowController {
 
-    private final ShowService showService;
+    private final ShowFacade showFacade;
 
-    public ShowController(ShowService showService) {
-        this.showService = showService;
+    public ShowController(ShowFacade showFacade) {
+        this.showFacade = showFacade;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") long id) {
-        ShowDTO show = showService.findShowById(id);
+    public ResponseEntity<ShowDTO> getShow(@PathVariable(name = "id") Long id) {
+        ShowDTO show = showFacade.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(show);
     }
 
     @PostMapping("/{id}/reservations")
-    public ResponseEntity<ReservationDTO> makeReservation(@PathVariable(name = "id") long id,
+    public ResponseEntity<ReservationDTO> makeReservation(@PathVariable(name = "id") Long id,
                                                           @RequestBody @Valid ReservationForm form) {
         try {
-            ReservationDTO reservation = showService.makeReservation(id, form);
+            ReservationDTO reservation = showFacade.makeReservation(id, form);
             return ResponseEntity.status(HttpStatus.CREATED).body(reservation);
         } catch (SeatAlreadyOccupied e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,

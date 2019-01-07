@@ -9,6 +9,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Repository
-public interface ShowRepository extends JpaRepository<Show, Long> {
+interface ShowRepository extends JpaRepository<Show, Long> {
     List<Show> findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(Movie movie, LocalDate showDate, LocalTime showTime);
 }

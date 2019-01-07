@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Auditorium {
+class Auditorium {
 
     @Id
     @GeneratedValue
