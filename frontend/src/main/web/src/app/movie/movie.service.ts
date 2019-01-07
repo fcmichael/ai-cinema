@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Movie} from "./movie";
 import {map} from "rxjs/operators";
@@ -10,7 +10,6 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MovieService {
 
-  private programmeUrl: string = 'http://localhost:8080/programmes';
   private movieUrl: string = 'http://localhost:8080/movies';
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
@@ -18,35 +17,6 @@ export class MovieService {
 
   getAllMovies(): Observable<Movie[]> {
     return this.httpClient.get<Movie[]>(this.movieUrl)
-      .pipe(map((movies: Movie[]) => {
-        return movies.map(r => {
-          return this.mapMovie(r);
-        });
-      }));
-  }
-
-  getMoviesByGenreAndCountryAndReleaseYearAndDay(
-    genre: string,
-    country: string,
-    releaseYear: string,
-    date: string
-  ): Observable<Movie[]> {
-
-    let params = new HttpParams().append('date', date);
-
-    if (genre != null) {
-      params = params.append('genre', genre);
-    }
-
-    if (country != null) {
-      params = params.append('country', country);
-    }
-
-    if (releaseYear != null) {
-      params = params.append('releaseYear', releaseYear);
-    }
-
-    return this.httpClient.get<Movie[]>(this.programmeUrl, {params: params})
       .pipe(map((movies: Movie[]) => {
         return movies.map(r => {
           return this.mapMovie(r);

@@ -1,23 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {Movie} from "../movie";
-import {MovieService} from "../movie.service";
-import {Genre} from "../genre";
-import {Country} from "../contry";
+import {Genre} from "../movie/genre";
+import {Country} from "../movie/contry";
 import {Weekday} from "./weekday";
+import {ProgrammeService} from "./programme.service";
+import {ProgrammeMovie} from "./programme-movie";
 
 @Component({
-  selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  selector: 'app-programme',
+  templateUrl: './programme.component.html',
+  styleUrls: ['./programme.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class ProgrammeComponent implements OnInit {
 
   genres = Genre;
   genreKeys: string[];
   countries = Country;
   countryKeys: string[];
   releaseYears: number[];
-  movies: Movie[] = [];
+  movies: ProgrammeMovie[] = [];
   weekdays = Weekday;
   weekdayKeys: string[];
 
@@ -26,7 +26,7 @@ export class MovieListComponent implements OnInit {
   selectedYear: string;
   selectedWeekday: number;
 
-  constructor(private movieService: MovieService) {
+  constructor(private programmeService: ProgrammeService) {
   }
 
   ngOnInit() {
@@ -39,9 +39,9 @@ export class MovieListComponent implements OnInit {
   }
 
   getMovies() {
-    this.movieService
-      .getMoviesByGenreAndCountryAndReleaseYearAndDay(
-        this.selectedGenre, this.selectedCountry, this.selectedYear, MovieListComponent.getDateFromWeekday(this.selectedWeekday))
+    this.programmeService
+      .getProgrammeOfSpecificDayByMovieGenreAndCountryAndReleaseYear(
+        this.getDateFromWeekday(this.selectedWeekday), this.selectedGenre, this.selectedCountry, this.selectedYear)
       .subscribe(movies => this.movies = movies);
   }
 
@@ -56,7 +56,7 @@ export class MovieListComponent implements OnInit {
     this.releaseYears = years;
   }
 
-  static getDateFromWeekday(weekday: number): string {
+  private getDateFromWeekday(weekday: number): string {
     let date = new Date();
     date.setDate(date.getDate() + (weekday + (7 - date.getDay())) % 7);
 

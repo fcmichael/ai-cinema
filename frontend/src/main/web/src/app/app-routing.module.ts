@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {MovieListComponent} from "./movie/movie-list/movie-list.component";
 import {PriceListComponent} from "./ticket/price-list/price-list.component";
 import {MovieReserveComponent} from "./movie/movie-reserve/movie-reserve.component";
 import {MovieReserveSuccessComponent} from "./movie/movie-reserve/movie-reserve-success/movie-reserve-success.component";
@@ -15,6 +14,7 @@ import {AdminProgrammeComponent} from "./admin/admin-programme/admin-programme.c
 import {AdminEventComponent} from "./admin/admin-event/admin-event.component";
 import {AdminPriceListComponent} from "./admin/admin-price-list/admin-price-list.component";
 import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
+import {ProgrammeComponent} from "./programme/programme.component";
 
 const appRoutes: Routes = [
   {
@@ -55,7 +55,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'repertuar',
-    component: MovieListComponent
+    component: ProgrammeComponent
   },
   {
     path: 'repertuar/:id/rezerwacja',
