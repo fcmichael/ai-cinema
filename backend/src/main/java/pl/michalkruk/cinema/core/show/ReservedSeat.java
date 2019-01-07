@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class ReservedSeat {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
