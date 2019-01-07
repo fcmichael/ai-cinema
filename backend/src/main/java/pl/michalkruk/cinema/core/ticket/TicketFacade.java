@@ -2,6 +2,7 @@ package pl.michalkruk.cinema.core.ticket;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,11 +18,12 @@ public class TicketFacade {
         this.ticketTypeService = ticketTypeService;
     }
 
-    List<TicketTypeDTO> findAllTicketTypes() {
+    @Transactional(readOnly = true)
+    public List<TicketTypeDTO> findAllTicketTypes() {
         return mapToDTO(ticketTypeService.findAll());
     }
 
-    List<TicketTypeDTO> mapToDTO(List<TicketType> ticketTypes) {
+    private List<TicketTypeDTO> mapToDTO(List<TicketType> ticketTypes) {
         return ticketTypes.stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 

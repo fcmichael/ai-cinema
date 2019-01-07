@@ -2,6 +2,7 @@ package pl.michalkruk.cinema.core.event;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.michalkruk.cinema.util.FileService;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public class EventFacade {
         this.imageLocation = imageLocation;
     }
 
-    EventDTO findEventById(Long id) {
+    @Transactional(readOnly = true)
+    public EventDTO findEventById(Long id) {
         return mapToDTO(eventService.findById(id));
     }
 
-    List<EventDTO> findAll() {
+    @Transactional(readOnly = true)
+    public List<EventDTO> findAll() {
         return mapToDTO(eventService.findAll());
     }
 

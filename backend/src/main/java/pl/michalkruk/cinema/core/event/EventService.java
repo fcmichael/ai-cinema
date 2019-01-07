@@ -7,7 +7,6 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class EventService {
 
     private final EventRepository eventRepository;
@@ -16,11 +15,11 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public Event findById(Long id) {
+    Event findById(Long id) {
         return eventRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public List<Event> findAll() {
+    List<Event> findAll() {
         return eventRepository.findAll();
     }
 

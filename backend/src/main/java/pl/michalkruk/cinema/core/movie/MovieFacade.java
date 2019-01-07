@@ -2,6 +2,7 @@ package pl.michalkruk.cinema.core.movie;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.michalkruk.cinema.util.FileService;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public class MovieFacade {
         this.imageLocation = imageLocation;
     }
 
-    List<MovieDTO> findAll() {
+    @Transactional(readOnly = true)
+    public List<MovieDTO> findAll() {
         return mapToDTO(movieService.findAll());
     }
 
