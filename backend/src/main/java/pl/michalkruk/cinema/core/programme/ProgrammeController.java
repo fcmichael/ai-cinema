@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping("/programmes")
 public class ProgrammeController {
 
-    private final ProgrammeService programmeService;
+    private final ProgrammeFacade programmeFacade;
 
-    public ProgrammeController(ProgrammeService programmeService) {
-        this.programmeService = programmeService;
+    public ProgrammeController(ProgrammeFacade programmeFacade) {
+        this.programmeFacade = programmeFacade;
     }
 
     @GetMapping
@@ -29,7 +29,7 @@ public class ProgrammeController {
             @RequestParam(value = "genre", required = false) Genre genre,
             @RequestParam(value = "country", required = false) Country country,
             @RequestParam(value = "releaseYear", required = false) String releaseYear) {
-        List<ProgrammeMovieDTO> all = programmeService.findAllByGenreCountryAndReleaseYearAndDate(genre, country, releaseYear, date);
+        List<ProgrammeMovieDTO> all = programmeFacade.findAllNotStartedShowsByGenreCountryAndReleaseYearAndDate(genre, country, releaseYear, date);
         return ResponseEntity.status(HttpStatus.OK).body(all);
     }
 }

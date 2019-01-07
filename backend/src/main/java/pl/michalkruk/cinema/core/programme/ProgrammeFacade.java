@@ -1,7 +1,8 @@
 package pl.michalkruk.cinema.core.programme;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.michalkruk.cinema.core.movie.Country;
 import pl.michalkruk.cinema.core.movie.Genre;
 import pl.michalkruk.cinema.core.movie.Movie;
@@ -11,36 +12,31 @@ import pl.michalkruk.cinema.core.show.ShowService;
 import pl.michalkruk.cinema.util.FileService;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-public class ProgrammeService {
+@Component
+public class ProgrammeFacade {
 
     private final MovieService movieService;
     private final ShowService showService;
-    private final String imageLocation;
+    private final String movieImageLocation;
 
-    public ProgrammeService(MovieService movieService, ShowService showService, @Value("${movie.images.location}") String imageLocation) {
+    public ProgrammeFacade(MovieService movieService, ShowService showService,
+                           @Value("${movie.images.location}") String movieImageLocation) {
         this.movieService = movieService;
         this.showService = showService;
-        this.imageLocation = imageLocation;
+        this.movieImageLocation = movieImageLocation;
     }
 
-    List<ProgrammeMovieDTO> findAllByGenreCountryAndReleaseYearAndDate(Genre genre, Country country, String releaseYear, LocalDate date) {
-        return movieService.findByGenreCountryAndReleaseYear(genre, country, releaseYear).stream()
-                .map(movie -> mapToDTO(movie, findShowsByMovieAndDate(movie, date)))
+    @Transactional(readOnly = true)
+    public List<ProgrammeMovieDTO> findAllNotStartedShowsByGenreCountryAndReleaseYearAndDate(
+            Genre genre, Country country, String releaseYear, LocalDate date) {
+        return movieService.findByGenreCountryAndReleaseYear(genre, country, releaseYear)
+                .stream()
+                .map(movie -> mapToDTO(movie, showService.findNotStartedShowsByMovieAndDate(movie, date)))
                 .filter(programmeMovieDTO -> !programmeMovieDTO.getShows().isEmpty())
                 .collect(Collectors.toList());
-    }
-
-    List<Show> findShowsByMovieAndDate(Movie movie, LocalDate date) {
-        if (LocalDate.now().isEqual(date)) {
-            return showService.findShowsByMovieAndDateAndTimeAfter(movie, date, LocalTime.now());
-        } else {
-            return showService.findShowsByMovieAndDateAndTimeAfter(movie, date, LocalTime.MIN);
-        }
     }
 
     private ProgrammeMovieDTO mapToDTO(Movie movie, List<Show> shows) {
@@ -52,7 +48,7 @@ public class ProgrammeService {
                 movie.getReleaseYear(),
                 movie.getCountry().toString(),
                 movie.getDescription(),
-                FileService.encodeImageWithBase64(imageLocation + movie.getImageName()),
+                FileService.encodeImageWithBase64(movieImageLocation + movie.getImageName()),
                 shows.stream().map(this::mapToDTO).collect(Collectors.toList()));
     }
 

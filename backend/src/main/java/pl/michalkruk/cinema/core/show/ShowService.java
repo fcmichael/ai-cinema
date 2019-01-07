@@ -17,8 +17,12 @@ public class ShowService {
         this.showRepository = showRepository;
     }
 
-    public List<Show> findShowsByMovieAndDateAndTimeAfter(Movie movie, LocalDate date, LocalTime time) {
-        return showRepository.findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(movie, date, time);
+    public List<Show> findNotStartedShowsByMovieAndDate(Movie movie, LocalDate date) {
+        if (LocalDate.now().isEqual(date)) {
+            return showRepository.findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(movie, date, LocalTime.now());
+        } else {
+            return showRepository.findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(movie, date, LocalTime.MIN);
+        }
     }
 
     Show findById(Long id) {

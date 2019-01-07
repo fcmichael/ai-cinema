@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class ProgrammeMovieDTO {
+class ProgrammeMovieDTO {
     private Long id;
     private String title;
     private String genre;
