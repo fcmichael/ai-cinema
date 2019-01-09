@@ -13,7 +13,7 @@ import {AgeLimit} from "../age-limit";
 export class MovieDatatableComponent implements OnInit {
 
   movies: Movie[];
-  displayedColumns: string[] = ['id', 'title', 'genre', 'ageLimit', 'duration', 'releaseYear',
+  displayedColumns: string[] = ['image', 'id', 'title', 'genre', 'ageLimit', 'duration', 'releaseYear',
     'country', 'edit'];
 
   genres = Genre;

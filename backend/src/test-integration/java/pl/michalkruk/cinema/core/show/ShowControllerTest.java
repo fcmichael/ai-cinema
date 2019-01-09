@@ -43,7 +43,7 @@ public class ShowControllerTest {
     @Test
     public void should_return_show_with_reserved_seats_by_id() {
         // given
-        Long id = 1L;
+        Long id = 3L;
         String url = baseUrl + "/" + id;
 
         // when
@@ -53,12 +53,12 @@ public class ShowControllerTest {
 
         // then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-        Assert.assertEquals((Long) 1L, show.getId());
+        Assert.assertEquals((Long) 3L, show.getId());
         Assert.assertEquals("Skazani na Shawshank", show.getMovieTitle());
-        Assert.assertEquals("A", show.getAuditoriumName());
-        Assert.assertEquals(LocalDate.now().toString(), show.getShowDate());
-        Assert.assertEquals("11:30", show.getShowTime());
-        Assert.assertEquals(Short.valueOf("9"), show.getAuditoriumRows());
+        Assert.assertEquals("C", show.getAuditoriumName());
+        Assert.assertEquals(LocalDate.now().plusDays(1).toString(), show.getShowDate());
+        Assert.assertEquals("12:00", show.getShowTime());
+        Assert.assertEquals(Short.valueOf("8"), show.getAuditoriumRows());
         Assert.assertEquals(Short.valueOf("18"), show.getAuditoriumColumns());
         Assert.assertEquals(6, show.getReservedSeats().size());
         Assert.assertTrue(CollectionUtils.isEqualCollection(
@@ -102,7 +102,7 @@ public class ShowControllerTest {
         int reservationsCountBefore = reservationRepository.findAll().size();
         int reservedSeatsCountBefore = reservedSeatRepository.findAll().size();
 
-        Long showId = 1L;
+        Long showId = 3L;
         String url = baseUrl + "/" + showId + "/reservations";
         Set<String> seatsToReserve = new HashSet<>(Arrays.asList("A1", "A2"));
         ReservationForm form = new ReservationForm(seatsToReserve, "Jan", "Nowak", "111111111");

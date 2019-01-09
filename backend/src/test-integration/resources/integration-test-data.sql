@@ -52,12 +52,12 @@ insert into show (id, movie_id, auditorium_id, show_date, show_time) values (27,
 
 insert into reservation(id, show_id, timestamp, first_name, last_name, phone_number) values (101, 1, CURRENT_TIMESTAMP, 'Jan', 'Nowak', '111111111');
 
-insert into reserved_seat(id, show_id, seat, reservation_id) values (101, 1, 'A1', 101);
-insert into reserved_seat(id, show_id, seat, reservation_id) values (102, 1, 'A4', 101);
-insert into reserved_seat(id, show_id, seat, reservation_id) values (103, 1, 'A7', 101);
-insert into reserved_seat(id, show_id, seat, reservation_id) values (104, 1, 'A10', 101);
-insert into reserved_seat(id, show_id, seat, reservation_id) values (105, 1, 'A13', 101);
-insert into reserved_seat(id, show_id, seat, reservation_id) values (106, 1, 'A17', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (101, 3, 'A1', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (102, 3, 'A4', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (103, 3, 'A7', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (104, 3, 'A10', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (105, 3, 'A13', 101);
+insert into reserved_seat(id, show_id, seat, reservation_id) values (106, 3, 'A17', 101);
 
 insert into ticket_type(id, category, price) values (101, 'NORMALNY', 21);
 insert into ticket_type(id, category, price) values (102, 'ULGOWY', 14);

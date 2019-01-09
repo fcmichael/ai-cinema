@@ -1,5 +1,6 @@
 package pl.michalkruk.cinema.core.movie;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,12 +15,14 @@ public class MovieFacade {
 
     private final MovieService movieService;
     private final FileService fileService;
+    private final ModelMapper modelMapper;
     private final String imageLocation;
 
-    public MovieFacade(MovieService movieService, FileService fileService,
+    public MovieFacade(MovieService movieService, FileService fileService, ModelMapper modelMapper,
                        @Value("${movie.images.location}") String imageLocation) {
         this.movieService = movieService;
         this.fileService = fileService;
+        this.modelMapper = modelMapper;
         this.imageLocation = imageLocation;
     }
 
@@ -44,21 +47,12 @@ public class MovieFacade {
         movie.setCountry(form.getCountry());
         movie.setDescription(form.getDescription());
 
-
-
         return mapToDTO(movie);
     }
 
     @Transactional
     public MovieDTO addMovie(MovieForm form, MultipartFile file) {
-        Movie movie = new Movie();
-        movie.setTitle(form.getTitle());
-        movie.setGenre(form.getGenre());
-        movie.setAgeLimit(form.getAgeLimit());
-        movie.setDuration(form.getDuration());
-        movie.setReleaseYear(form.getReleaseYear());
-        movie.setCountry(form.getCountry());
-        movie.setDescription(form.getDescription());
+        Movie movie = modelMapper.map(form, Movie.class);
 
         if (file != null) {
             movie.setImageName(fileService.storeFile(imageLocation, file));

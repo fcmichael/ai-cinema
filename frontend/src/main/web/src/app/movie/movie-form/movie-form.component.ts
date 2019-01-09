@@ -15,6 +15,7 @@ export class MovieFormComponent implements OnInit {
   @Input() formTitle: string;
   @Input() formButtonName: string;
   @Input() form: MovieForm;
+  @Input() showImageInput: boolean;
   url;
 
   genres = Genre;
