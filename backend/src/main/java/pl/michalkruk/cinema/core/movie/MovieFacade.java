@@ -3,6 +3,7 @@ package pl.michalkruk.cinema.core.movie;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import pl.michalkruk.cinema.util.FileService;
 
 import java.util.List;
@@ -27,6 +28,42 @@ public class MovieFacade {
     @Transactional(readOnly = true)
     public List<MovieDTO> findAll() {
         return mapToDTO(movieService.findAll());
+    }
+
+    @Transactional
+    public MovieDTO editMovie(Long id, MovieForm form) {
+        Movie movie = movieService.findById(id);
+        movie.setTitle(form.getTitle());
+        movie.setGenre(form.getGenre());
+        movie.setAgeLimit(form.getAgeLimit());
+        movie.setDuration(form.getDuration());
+        movie.setReleaseYear(form.getReleaseYear());
+        movie.setCountry(form.getCountry());
+        movie.setDescription(form.getDescription());
+
+
+
+        return mapToDTO(movie);
+    }
+
+    @Transactional
+    public MovieDTO addMovie(MovieForm form, MultipartFile file) {
+        Movie movie = new Movie();
+        movie.setTitle(form.getTitle());
+        movie.setGenre(form.getGenre());
+        movie.setAgeLimit(form.getAgeLimit());
+        movie.setDuration(form.getDuration());
+        movie.setReleaseYear(form.getReleaseYear());
+        movie.setCountry(form.getCountry());
+        movie.setDescription(form.getDescription());
+
+        if (file != null) {
+            movie.setImageName(FileService.storeFile(imageLocation, file));
+        }
+
+        movieService.save(movie);
+
+        return mapToDTO(movie);
     }
 
     private List<MovieDTO> mapToDTO(List<Movie> movies) {

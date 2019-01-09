@@ -12,6 +12,22 @@
   padding-bottom: 20px;
 }
 
+.form {
+  width: 30%;
+}
+
+.mat-form-field {
+  width:100%;
+}
+
+.movie-image > img {
+  width: 100px;
+  height: 150px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .button-container {
   display:flex;
   align-items: center;

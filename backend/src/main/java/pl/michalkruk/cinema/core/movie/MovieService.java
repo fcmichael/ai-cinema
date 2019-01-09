@@ -28,6 +28,10 @@ public class MovieService {
     }
 
     List<Movie> findAll() {
-        return movieRepository.findAll();
+        return movieRepository.findAllOrderById();
+    }
+
+    Movie save(Movie movie) {
+        return movieRepository.save(movie);
     }
 }

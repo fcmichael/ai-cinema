@@ -4,6 +4,7 @@ import {Country} from "../movie/contry";
 import {Weekday} from "./weekday";
 import {ProgrammeService} from "./programme.service";
 import {ProgrammeMovie} from "./programme-movie";
+import {AgeLimit} from "../movie/age-limit";
 
 @Component({
   selector: 'app-programme',
@@ -16,6 +17,8 @@ export class ProgrammeComponent implements OnInit {
   genreKeys: string[];
   countries = Country;
   countryKeys: string[];
+  ageLimits = AgeLimit;
+  ageLimitKeys: string[];
   releaseYears: number[];
   movies: ProgrammeMovie[] = [];
   weekdays = Weekday;
@@ -32,6 +35,7 @@ export class ProgrammeComponent implements OnInit {
   ngOnInit() {
     this.genreKeys = Object.keys(Genre);
     this.countryKeys = Object.keys(Country);
+    this.ageLimitKeys = Object.keys(AgeLimit);
     this.weekdayKeys = Object.keys(Weekday);
     this.selectedWeekday = (new Date).getDay();
     this.generateReleaseYears();

@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Movie} from "../movie";
+import {MovieForm} from "../movie-form";
 import {Genre} from "../genre";
 import {Country} from "../contry";
+import {AgeLimit} from "../age-limit";
+import {MovieService} from "../movie.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-add',
@@ -10,12 +13,19 @@ import {Country} from "../contry";
 })
 export class MovieAddComponent implements OnInit {
 
-  movie: Movie = new Movie(-1, '', Genre.ANIMOWANY, '', 1
-    , 1, Country.POLAND, '', '', []);
+  form: MovieForm = new MovieForm('', Object.keys(Genre)[0], Object.keys(AgeLimit)[0], 0
+    , 2019, Object.keys(Country)[0], '', null);
 
-  constructor() { }
+  constructor(private movieService: MovieService, private router: Router) {
+  }
 
   ngOnInit() {
+  }
+
+  addMovie(form: MovieForm) {
+    this.movieService.addMovie(form).subscribe(
+      () => this.router.navigate(['/admin/filmy'])
+    );
   }
 
 }

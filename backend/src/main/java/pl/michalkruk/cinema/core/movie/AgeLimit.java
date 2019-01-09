@@ -4,15 +4,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum AgeLimit {
-    B_O("b.o."),
-    MIN_12("12"),
-    MIN_15("15"),
-    MIN_18("18");
-
-    private String description;
-
-    @Override
-    public String toString() {
-        return description;
-    }
+    B_O,
+    MIN_12,
+    MIN_15,
+    MIN_18;
 }

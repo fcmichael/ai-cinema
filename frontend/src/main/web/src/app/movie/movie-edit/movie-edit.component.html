@@ -1,3 +1,7 @@
 <div class="container">
-  <app-movie-form [movie]="movie" [formTitle]="'Formularz edycji filmu'"></app-movie-form>
+  <app-movie-form [form]="form"
+                  [formTitle]="'Formularz edycji filmu'"
+                  [formButtonName]="'Zapisz'"
+                  (formSubmitEvent)="editMovie(form)"
+  ></app-movie-form>
 </div>

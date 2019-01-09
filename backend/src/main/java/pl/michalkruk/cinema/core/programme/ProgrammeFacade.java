@@ -35,7 +35,7 @@ public class ProgrammeFacade {
         return movieService.findByGenreCountryAndReleaseYear(genre, country, releaseYear)
                 .stream()
                 .map(movie -> mapToDTO(movie, showService.findNotStartedShowsByMovieAndDate(movie, date)))
-                .filter(programmeMovieDTO -> !programmeMovieDTO.getShows().isEmpty())
+//                .filter(programmeMovieDTO -> !programmeMovieDTO.getShows().isEmpty())
                 .collect(Collectors.toList());
     }
 

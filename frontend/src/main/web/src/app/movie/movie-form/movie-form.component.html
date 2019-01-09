@@ -1,7 +1,7 @@
 <div class="main-container">
   <div class="form-header">{{formTitle}}</div>
-  <div class="form">
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+  <div *ngIf="form" class="form">
+    <form (ngSubmit)="onSubmit()" #movieForm="ngForm" novalidate>
       <div>
         <div>
           <mat-form-field>
@@ -11,15 +11,93 @@
                    matInput
                    placeholder="Tytuł"
                    name="title"
-                   [(ngModel)]="movie.title">
+                   [(ngModel)]="form.title">
           </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-select placeholder="Gatunek" [value]="form.genre" [(ngModel)]="form.genre" name="genre">
+              <mat-option *ngFor="let key of genreKeys" [value]="key">
+                {{genres[key]}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-select placeholder="Ograniczenie wiekowe" [value]="form.ageLimit" [(ngModel)]="form.ageLimit"
+                        name="ageLimit">
+              <mat-option *ngFor="let key of ageLimitKeys" [value]="key">
+                {{ageLimits[key]}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="number"
+                   id="duration"
+                   min="0"
+                   required
+                   matInput
+                   placeholder="Czas trwania"
+                   name="duration"
+                   [(ngModel)]="form.duration">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="text"
+                   id="releaseYear"
+                   minlength="4"
+                   maxlength="4"
+                   required
+                   matInput
+                   placeholder="Rok produkcji"
+                   name="releaseYear"
+                   [(ngModel)]="form.releaseYear">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-select placeholder="Kraj produkcji" [value]="form.country" [(ngModel)]="form.country" name="country">
+              <mat-option *ngFor="let key of countryKeys" [value]="key">
+                {{countries[key]}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <textarea rows="8"
+                      matInput
+                      id="description"
+                      placeholder="Opis"
+                      name="description"
+                      [(ngModel)]="form.description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <!--<label>-->
+            <!--<input type="file" (change)="readUrl($event)">-->
+          <!--</label>-->
+          <!--<img [src] = "url">-->
+          <!--<button (click)="fileInput.click()">-->
+            <!--&lt;!&ndash;<md-icon>library_add</md-icon>&ndash;&gt;-->
+            <!--<span>Select</span>-->
+            <!--<input #fileInput type="file" style="display:none;" />-->
+          <!--</button>-->
+          <label>
+            <input type="file" (change)="selectFile($event)">
+          </label>
         </div>
         <div class="button-container">
           <button type="submit"
                   mat-raised-button color="primary"
                   disableRipple
-                  [disabled]="!loginForm.form.valid"
-          >Wyślij
+                  [disabled]="!movieForm.form.valid"
+          >{{formButtonName}}
           </button>
         </div>
       </div>

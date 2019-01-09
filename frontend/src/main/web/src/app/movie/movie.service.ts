@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Movie} from "./movie";
 import {map} from "rxjs/operators";
 import {DomSanitizer} from "@angular/platform-browser";
+import {MovieForm} from "./movie-form";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,19 @@ export class MovieService {
       .pipe(map((movie: Movie) => {
         return this.mapMovie(movie);
       }));
+  }
+
+  addMovie(form: MovieForm): Observable<Movie> {
+    const formData: FormData = new FormData();
+    formData.append('file', form.image);
+    formData.append('form', JSON.stringify(form));
+
+    return this.httpClient.post<Movie>(this.movieUrl, formData);
+  }
+
+  editMovie(id: number, form: MovieForm): Observable<Movie> {
+    const url = this.movieUrl + '/' + id;
+    return this.httpClient.put<Movie>(url, form);
   }
 
   private mapMovie(movie: Movie): Movie {
