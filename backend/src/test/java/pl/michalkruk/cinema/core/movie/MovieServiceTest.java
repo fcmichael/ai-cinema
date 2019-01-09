@@ -26,12 +26,12 @@ public class MovieServiceTest {
         this.movieService = new MovieService(movieRepository);
         this.movies = new ArrayList<>();
 
-        this.movies.add(Movie.builder().id(1L).title("A").genre(ANIMOWANY).releaseYear((short) 2018).country(USA).build());
-        this.movies.add(Movie.builder().id(2L).title("B").genre(DRAMAT).releaseYear((short) 2005).country(GERMANY).build());
-        this.movies.add(Movie.builder().id(3L).title("C").genre(GANGSTERSKI).releaseYear((short) 2003).country(GERMANY).build());
-        this.movies.add(Movie.builder().id(4L).title("D").genre(ANIMOWANY).releaseYear((short) 1994).country(GERMANY).build());
-        this.movies.add(Movie.builder().id(5L).title("E").genre(ANIMOWANY).releaseYear((short) 1994).country(GERMANY).build());
-        this.movies.add(Movie.builder().id(6L).title("F").genre(DRAMAT).releaseYear((short) 2006).country(USA).build());
+        this.movies.add(Movie.builder().id(1L).title("A").genre(ANIMATION).releaseYear((short) 2018).country(USA).build());
+        this.movies.add(Movie.builder().id(2L).title("B").genre(DRAMA).releaseYear((short) 2005).country(GERMANY).build());
+        this.movies.add(Movie.builder().id(3L).title("C").genre(CRIME).releaseYear((short) 2003).country(GERMANY).build());
+        this.movies.add(Movie.builder().id(4L).title("D").genre(ANIMATION).releaseYear((short) 1994).country(GERMANY).build());
+        this.movies.add(Movie.builder().id(5L).title("E").genre(ANIMATION).releaseYear((short) 1994).country(GERMANY).build());
+        this.movies.add(Movie.builder().id(6L).title("F").genre(DRAMA).releaseYear((short) 2006).country(USA).build());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class MovieServiceTest {
 
         // when
         List<Movie> filteredByGenre = movieService.
-                findByGenreCountryAndReleaseYear(ANIMOWANY, null, null);
+                findByGenreCountryAndReleaseYear(ANIMATION, null, null);
 
         // then
         Assert.assertEquals(3, filteredByGenre.size());
@@ -86,7 +86,7 @@ public class MovieServiceTest {
 
         // when
         List<Movie> filteredByGenreCountryAndReleaseYear = movieService.
-                findByGenreCountryAndReleaseYear(ANIMOWANY, GERMANY, "1994");
+                findByGenreCountryAndReleaseYear(ANIMATION, GERMANY, "1994");
 
         // then
         Assert.assertEquals(2, filteredByGenreCountryAndReleaseYear.size());

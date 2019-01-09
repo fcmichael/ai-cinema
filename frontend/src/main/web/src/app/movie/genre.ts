@@ -1,18 +1,15 @@
 export enum Genre {
-  AKCJA = 'Akcja',
-  ANIMOWANY = 'Animowany',
-  BIOGRAFICZNY = 'Biograficzny',
-  DRAMAT = 'Dramat',
+  ACTION = 'Akcja',
+  ANIMATION = 'Animowany',
+  BIOGRAPHY = 'Biograficzny',
+  DRAMA = 'Dramat',
   FANTASY = 'Fantasy',
-  GANGSTERSKI = 'Gangsterski',
-  HORROT = 'Horror',
-  KATASTROFICZNY = 'Katastroficzny',
-  KOMEDIA = 'Komedia',
-  KOMEDIA_ROMANTYCZNA = 'Komedia romantyczna',
-  KRYMINALNY = 'Kryminalny',
+  HORROR = 'Horror',
+  COMEDY = 'Komedia',
+  ROMANCE = 'Komedia romantyczna',
+  CRIME = 'Kryminalny',
   MUSICAL = 'Musical',
-  OBYCZAJOWY = 'Obyczajowy',
   SCI_FI = 'Science-Fiction',
   THRILLER = 'Thriller',
-  WOJENNY = 'Wojenny'
+  WAR = 'Wojenny'
 }

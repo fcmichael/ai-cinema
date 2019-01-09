@@ -66,7 +66,7 @@ public class ProgrammeControllerTest {
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(2))
-                .queryParam("genre", "DRAMAT");
+                .queryParam("genre", "DRAMA");
 
         // when
         ResponseEntity<List<ProgrammeMovieDTO>> response =
@@ -136,7 +136,7 @@ public class ProgrammeControllerTest {
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString(baseUrl)
                 .queryParam("date", LocalDate.now().plusDays(4))
-                .queryParam("genre", "ANIMOWANY")
+                .queryParam("genre", "ANIMATION")
                 .queryParam("country", "USA")
                 .queryParam("releaseYear", "1994");
 

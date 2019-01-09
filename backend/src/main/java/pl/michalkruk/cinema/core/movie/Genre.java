@@ -4,20 +4,17 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum Genre {
-    AKCJA,
-    ANIMOWANY,
-    BIOGRAFICZNY,
-    DRAMAT,
+    ACTION,
+    ANIMATION,
+    BIOGRAPHY,
+    DRAMA,
     FANTASY,
-    GANGSTERSKI,
     HORROR,
-    KATASTROFICZNY,
-    KOMEDIA,
-    KOMEDIA_ROMANTYCZNA,
-    KRYMINALNY,
+    COMEDY,
+    ROMANCE,
+    CRIME,
     MUSICAL,
-    OBYCZAJOWY,
     SCI_FI,
     THRILLER,
-    WOJENNY
+    WAR
 }
