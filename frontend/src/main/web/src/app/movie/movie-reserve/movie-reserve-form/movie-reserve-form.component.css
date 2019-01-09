@@ -12,12 +12,29 @@
   padding-bottom: 20px;
 }
 
+.form {
+  width: 30%;
+}
+
+.mat-form-field {
+  width: 100%;
+  padding-bottom: 15px;
+}
+
 .form-selected-seats {
   padding-bottom: 20px;
+  text-align: center;
+}
+
+.form-selected-seats-warning {
+  padding-top: 5px;
+  color: rgba(255, 255, 255, .7);
+  font-size: 12px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .button-container {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 20px;

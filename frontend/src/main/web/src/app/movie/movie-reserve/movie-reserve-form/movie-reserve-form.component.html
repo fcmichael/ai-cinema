@@ -1,11 +1,16 @@
 <div class="main-container">
   <div class="form-header">Formularz rezerwacji</div>
-  <div class="form-selected-seats">Wybrane miejsca: {{selectedSeats}}</div>
+  <div class="form-selected-seats">
+    <div>Wybrane miejsca: {{selectedSeats}}</div>
+    <div *ngIf="selectedSeats == undefined || selectedSeats.length == 0" class="form-selected-seats-warning">
+      Wybierz przynajmniej jedno miejsce.
+    </div>
+  </div>
   <div class="form">
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
       <div>
         <div>
-          <mat-form-field>
+          <mat-form-field hintLabel="Minimum 2 znaki rozpoczynające się wielką literą.">
             <input type="text"
                    pattern="[A-ZŁŚŹŻ][a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{1,63}"
                    id="firstname"
@@ -17,7 +22,7 @@
           </mat-form-field>
         </div>
         <div>
-          <mat-form-field>
+          <mat-form-field hintLabel="Minimum 2 znaki rozpoczynające się wielką literą.">
             <input type="text"
                    id="lastname"
                    pattern="[A-ZŁŚŹŻ][a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{1,63}"
@@ -29,7 +34,7 @@
           </mat-form-field>
         </div>
         <div>
-          <mat-form-field>
+          <mat-form-field hintLabel="Numer telefonu składający się z 9 cyfr, np. 123456789.">
             <input type="tel"
                    pattern="[0-9]{9}"
                    id="phonenumber"
