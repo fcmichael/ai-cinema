@@ -20,9 +20,20 @@
   width:100%;
 }
 
+.image-picker {
+  color: rgba(255,255,255,.7);
+  font-size: 12px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding-bottom: 5px;
+}
+
+.movie-image {
+  padding-top: 20px;
+}
+
 .movie-image > img {
-  width: 100px;
-  height: 150px;
+  width: 200px;
+  height: 300px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;

@@ -38,6 +38,7 @@ export class MovieEditComponent implements OnInit {
     this.movieService.editMovie(this.movieId, form).subscribe(
       () => this.router.navigate(['/admin/filmy'])
     );
+
   }
 
   private mapToForm(movie: Movie): MovieForm {

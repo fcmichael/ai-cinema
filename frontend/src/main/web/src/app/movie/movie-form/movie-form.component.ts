@@ -38,25 +38,22 @@ export class MovieFormComponent implements OnInit {
   }
 
   selectFile(event) {
-    this.form.image = event.target.files.item(0);
-
-    // if (file.type.match('image.*')) {
-    //   this.form.image = event.target.files;
-    // } else {
-    //   alert('invalid format');
-    // }
+    let file: File = event.target.files.item(0);
+    if (file.type.match('image.*')) {
+      this.form.image = file;
+      this.displayImage();
+    }
   }
 
-  readUrl(event:any) {
-    if (event.target.files && event.target.files[0]) {
-      this.form.image = event.target.files;
+  displayImage() {
+    if (this.form.image) {
       let reader = new FileReader();
 
       reader.onload = (event: ProgressEvent) => {
         this.url = (<FileReader>event.target).result;
       };
 
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(this.form.image);
     }
   }
 

@@ -79,18 +79,14 @@
           </mat-form-field>
         </div>
         <div>
-          <!--<label>-->
-            <!--<input type="file" (change)="readUrl($event)">-->
-          <!--</label>-->
-          <!--<img [src] = "url">-->
-          <!--<button (click)="fileInput.click()">-->
-            <!--&lt;!&ndash;<md-icon>library_add</md-icon>&ndash;&gt;-->
-            <!--<span>Select</span>-->
-            <!--<input #fileInput type="file" style="display:none;" />-->
-          <!--</button>-->
-          <label>
-            <input type="file" (change)="selectFile($event)">
-          </label>
+          <div class="image-picker">Wybierz obraz</div>
+          <input id="image" type="file" (change)="selectFile($event)" accept="/image/*">
+          <div *ngIf="!url && form.image" class="movie-image">
+            <img *ngIf="!url && form.image" [src]="form.image">
+          </div>
+          <div *ngIf="url" class="movie-image">
+            <img [src]="url">
+          </div>
         </div>
         <div class="button-container">
           <button type="submit"

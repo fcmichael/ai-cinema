@@ -16,7 +16,7 @@
   </div>
   <div *ngIf="authenticationService.isLoggedIn()" class="login">
     <button class="login-button" mat-flat-button (click)="authenticationService.logout()">
-      <i class="material-icons white">meeting_room</i>
+      <i class="material-icons white">logout</i>
       <span>{{authenticationService.getUsername()}}</span>
     </button>
   </div>
