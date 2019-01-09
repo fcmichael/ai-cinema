@@ -20,12 +20,14 @@ public class ProgrammeFacade {
 
     private final MovieService movieService;
     private final ShowService showService;
+    private final FileService fileService;
     private final String movieImageLocation;
 
-    public ProgrammeFacade(MovieService movieService, ShowService showService,
+    public ProgrammeFacade(MovieService movieService, ShowService showService, FileService fileService,
                            @Value("${movie.images.location}") String movieImageLocation) {
         this.movieService = movieService;
         this.showService = showService;
+        this.fileService = fileService;
         this.movieImageLocation = movieImageLocation;
     }
 
@@ -48,7 +50,7 @@ public class ProgrammeFacade {
                 movie.getReleaseYear(),
                 movie.getCountry().toString(),
                 movie.getDescription(),
-                FileService.encodeImageWithBase64(movieImageLocation + movie.getImageName()),
+                fileService.encodeImageWithBase64(movieImageLocation + movie.getImageName()),
                 shows.stream().map(this::mapToDTO).collect(Collectors.toList()));
     }
 

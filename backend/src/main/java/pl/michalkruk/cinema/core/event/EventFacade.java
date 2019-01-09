@@ -12,10 +12,13 @@ import java.util.stream.Collectors;
 public class EventFacade {
 
     private final EventService eventService;
+    private final FileService fileService;
     private final String imageLocation;
 
-    public EventFacade(EventService eventService, @Value("${event.images.location}") String imageLocation) {
+    public EventFacade(EventService eventService, FileService fileService,
+                       @Value("${event.images.location}") String imageLocation) {
         this.eventService = eventService;
+        this.fileService = fileService;
         this.imageLocation = imageLocation;
     }
 
@@ -42,7 +45,7 @@ public class EventFacade {
                 event.getEventDate().toString(),
                 event.getShortDescription(),
                 event.getDescription(),
-                FileService.encodeImageWithBase64(imageLocation + event.getImageName())
+                fileService.encodeImageWithBase64(imageLocation + event.getImageName())
         );
     }
 }

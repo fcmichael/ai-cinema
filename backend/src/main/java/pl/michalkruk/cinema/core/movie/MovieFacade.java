@@ -13,10 +13,13 @@ import java.util.stream.Collectors;
 public class MovieFacade {
 
     private final MovieService movieService;
+    private final FileService fileService;
     private final String imageLocation;
 
-    public MovieFacade(MovieService movieService, @Value("${movie.images.location}") String imageLocation) {
+    public MovieFacade(MovieService movieService, FileService fileService,
+                       @Value("${movie.images.location}") String imageLocation) {
         this.movieService = movieService;
+        this.fileService = fileService;
         this.imageLocation = imageLocation;
     }
 
@@ -58,7 +61,7 @@ public class MovieFacade {
         movie.setDescription(form.getDescription());
 
         if (file != null) {
-            movie.setImageName(FileService.storeFile(imageLocation, file));
+            movie.setImageName(fileService.storeFile(imageLocation, file));
         }
 
         movieService.save(movie);
@@ -79,6 +82,6 @@ public class MovieFacade {
                 movie.getReleaseYear(),
                 movie.getCountry().toString(),
                 movie.getDescription(),
-                FileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
+                fileService.encodeImageWithBase64(imageLocation + movie.getImageName()));
     }
 }
