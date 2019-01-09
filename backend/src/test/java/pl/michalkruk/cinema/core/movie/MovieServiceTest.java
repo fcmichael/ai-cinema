@@ -37,7 +37,7 @@ public class MovieServiceTest {
     @Test
     public void should_find_all_filtered_by_genre() {
         // given
-        when(movieRepository.findAll()).thenReturn(movies);
+        when(movieRepository.findAllOrderById()).thenReturn(movies);
 
         // when
         List<Movie> filteredByGenre = movieService.
@@ -53,44 +53,44 @@ public class MovieServiceTest {
     @Test
     public void should_find_all_filtered_by_country() {
         // given
-        when(movieRepository.findAll()).thenReturn(movies);
+        when(movieRepository.findAllOrderById()).thenReturn(movies);
 
         // when
-        List<Movie> filteredByGenre = movieService.
+        List<Movie> filteredByCountry = movieService.
                 findByGenreCountryAndReleaseYear(null, USA, null);
 
         // then
-        Assert.assertEquals(2, filteredByGenre.size());
-        Assert.assertTrue(filteredByGenre.contains(movies.get(0)));
-        Assert.assertTrue(filteredByGenre.contains(movies.get(5)));
+        Assert.assertEquals(2, filteredByCountry.size());
+        Assert.assertTrue(filteredByCountry.contains(movies.get(0)));
+        Assert.assertTrue(filteredByCountry.contains(movies.get(5)));
     }
 
     @Test
     public void should_find_all_filtered_by_releaseYear() {
         // given
-        when(movieRepository.findAll()).thenReturn(movies);
+        when(movieRepository.findAllOrderById()).thenReturn(movies);
 
         // when
-        List<Movie> filteredByGenre = movieService.
+        List<Movie> filteredByReleaseYear = movieService.
                 findByGenreCountryAndReleaseYear(null, null, "2018");
 
         // then
-        Assert.assertEquals(1, filteredByGenre.size());
-        Assert.assertTrue(filteredByGenre.contains(movies.get(0)));
+        Assert.assertEquals(1, filteredByReleaseYear.size());
+        Assert.assertTrue(filteredByReleaseYear.contains(movies.get(0)));
     }
 
     @Test
     public void should_find_all_filtered_by_genre_country_and_releaseYear() {
         // given
-        when(movieRepository.findAll()).thenReturn(movies);
+        when(movieRepository.findAllOrderById()).thenReturn(movies);
 
         // when
-        List<Movie> filteredByGenre = movieService.
+        List<Movie> filteredByGenreCountryAndReleaseYear = movieService.
                 findByGenreCountryAndReleaseYear(ANIMOWANY, GERMANY, "1994");
 
         // then
-        Assert.assertEquals(2, filteredByGenre.size());
-        Assert.assertTrue(filteredByGenre.contains(movies.get(3)));
-        Assert.assertTrue(filteredByGenre.contains(movies.get(4)));
+        Assert.assertEquals(2, filteredByGenreCountryAndReleaseYear.size());
+        Assert.assertTrue(filteredByGenreCountryAndReleaseYear.contains(movies.get(3)));
+        Assert.assertTrue(filteredByGenreCountryAndReleaseYear.contains(movies.get(4)));
     }
 }
