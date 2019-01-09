@@ -4,7 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupied;
+import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupiedException;
+import pl.michalkruk.cinema.core.show.exception.ShowStartsSoonException;
 
 import javax.validation.Valid;
 
@@ -30,9 +31,12 @@ public class ShowController {
         try {
             ReservationDTO reservation = showFacade.makeReservation(id, form);
             return ResponseEntity.status(HttpStatus.CREATED).body(reservation);
-        } catch (SeatAlreadyOccupied e) {
+        } catch (SeatAlreadyOccupiedException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     "Przynajmniej jedno miejsce jest już zarezerwowane");
+        } catch (ShowStartsSoonException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Brak możliwości rezerwacji ze względu na bliski czas rozpoczęcia seansu");
         }
     }
 }

@@ -31,12 +31,13 @@ public class ProgrammeFacade {
         this.movieImageLocation = movieImageLocation;
     }
 
+
     @Transactional(readOnly = true)
-    public List<ProgrammeMovieDTO> findAllNotStartedShowsByGenreCountryAndReleaseYearAndDate(
+    public List<ProgrammeMovieDTO> findShowsPossibleToMakingReservationByGenreCountryAndReleaseYearAndDate(
             Genre genre, Country country, String releaseYear, LocalDate date) {
         return movieService.findByGenreCountryAndReleaseYear(genre, country, releaseYear)
                 .stream()
-                .map(movie -> mapToDTO(movie, showService.findNotStartedShowsByMovieAndDate(movie, date)))
+                .map(movie -> mapToDTO(movie, showService.findShowsPossibleToMakingReservationByMovieAndDate(movie, date)))
                 .filter(programmeMovieDTO -> !programmeMovieDTO.getShows().isEmpty())
                 .collect(Collectors.toList());
     }

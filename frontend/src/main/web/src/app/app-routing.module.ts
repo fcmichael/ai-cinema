@@ -15,9 +15,9 @@ import {AdminEventComponent} from "./admin/admin-event/admin-event.component";
 import {AdminPriceListComponent} from "./admin/admin-price-list/admin-price-list.component";
 import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
 import {ProgrammeComponent} from "./programme/programme.component";
-import {MovieFormComponent} from "./movie/movie-form/movie-form.component";
 import {MovieEditComponent} from "./movie/movie-edit/movie-edit.component";
 import {MovieAddComponent} from "./movie/movie-add/movie-add.component";
+import {ReservationGuard} from "./security/guard/reservation.guard";
 
 const appRoutes: Routes = [
   {
@@ -70,7 +70,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'repertuar/:id/rezerwacja',
-    component: MovieReserveComponent
+    component: MovieReserveComponent,
+    canActivate: [ReservationGuard]
   },
   {
     path: 'repertuar/:id/rezerwacja/sukces',

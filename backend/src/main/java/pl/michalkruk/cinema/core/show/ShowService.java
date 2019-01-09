@@ -17,9 +17,10 @@ public class ShowService {
         this.showRepository = showRepository;
     }
 
-    public List<Show> findNotStartedShowsByMovieAndDate(Movie movie, LocalDate date) {
+    public List<Show> findShowsPossibleToMakingReservationByMovieAndDate(Movie movie, LocalDate date) {
         if (LocalDate.now().isEqual(date)) {
-            return showRepository.findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(movie, date, LocalTime.now());
+            return showRepository.findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(
+                    movie, date, LocalTime.now().plusMinutes(ReservationLimit.MOVIE_RESERVATION_DEADLINE_MINUTES));
         } else {
             return showRepository.findAllByMovieAndShowDateAndShowTimeAfterOrderByShowTimeAsc(movie, date, LocalTime.MIN);
         }

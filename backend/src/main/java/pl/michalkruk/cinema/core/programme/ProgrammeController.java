@@ -29,7 +29,7 @@ public class ProgrammeController {
             @RequestParam(value = "genre", required = false) Genre genre,
             @RequestParam(value = "country", required = false) Country country,
             @RequestParam(value = "releaseYear", required = false) String releaseYear) {
-        List<ProgrammeMovieDTO> all = programmeFacade.findAllNotStartedShowsByGenreCountryAndReleaseYearAndDate(genre, country, releaseYear, date);
+        List<ProgrammeMovieDTO> all = programmeFacade.findShowsPossibleToMakingReservationByGenreCountryAndReleaseYearAndDate(genre, country, releaseYear, date);
         return ResponseEntity.status(HttpStatus.OK).body(all);
     }
 }

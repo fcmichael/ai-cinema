@@ -3,7 +3,8 @@ package pl.michalkruk.cinema.core.show;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupied;
+import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupiedException;
+import pl.michalkruk.cinema.core.show.exception.ShowStartsSoonException;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -34,15 +35,39 @@ public class ShowFacade {
 
     @Transactional
     public ReservationDTO makeReservation(Long showId, ReservationForm form) {
-        if (reservedSeatService.areAllSeatsFree(showId, form.getSeats())) {
-            Show show = showService.findById(showId);
+        Show show = showService.findById(showId);
+
+        if (isReservationPossible(show, form)) {
             Reservation reservation = mapFromForm(form, show);
             reservationService.save(reservation);
             Set<String> reservedSeats = reservedSeatService.reserveSeats(reservation, form.getSeats());
             return mapToDTO(reservation, show, reservedSeats);
+        } else {
+            return null;
+        }
+    }
+
+    private boolean isReservationPossible(Show show, ReservationForm form) {
+        if (isReservationRequestTooLate(show)) {
+            throw new ShowStartsSoonException();
         }
 
-        throw new SeatAlreadyOccupied();
+        if (!areAllSeatsFree(show, form.getSeats())) {
+            throw new SeatAlreadyOccupiedException();
+        }
+
+        return true;
+    }
+
+    private boolean isReservationRequestTooLate(Show show) {
+        LocalDateTime movieTimeStamp = LocalDateTime.of(show.getShowDate(), show.getShowTime());
+
+        return LocalDateTime.now()
+                .isAfter(movieTimeStamp.minusMinutes(ReservationLimit.MOVIE_RESERVATION_DEADLINE_MINUTES));
+    }
+
+    private boolean areAllSeatsFree(Show show, Set<String> seats) {
+        return reservedSeatService.areAllSeatsFree(show.getId(), seats);
     }
 
     private Reservation mapFromForm(ReservationForm form, Show show) {
