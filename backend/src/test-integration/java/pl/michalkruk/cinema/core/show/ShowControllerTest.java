@@ -85,9 +85,10 @@ public class ShowControllerTest {
 
         // then
         Assert.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        Assert.assertEquals("Jan", reservation.getFirstName());
-        Assert.assertEquals("Nowak", reservation.getLastName());
-        Assert.assertEquals("111111111", reservation.getPhoneNumber());
+        Assert.assertNotNull(reservation);
+        Assert.assertEquals(form.getFirstName(), reservation.getFirstName());
+        Assert.assertEquals(form.getLastName(), reservation.getLastName());
+        Assert.assertEquals(form.getPhoneNumber(), reservation.getPhoneNumber());
         Assert.assertEquals(reservationsCountBefore + 1, reservationRepository.findAll().size());
         Assert.assertEquals(reservedSeatsCountBefore + seatsToReserve.size(), reservedSeatRepository.findAll().size());
         Assert.assertEquals(show.getShowDate().toString(), reservation.getShowDate());
