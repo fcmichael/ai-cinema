@@ -18,6 +18,7 @@ import {ProgrammeComponent} from "./programme/programme.component";
 import {MovieEditComponent} from "./movie/movie-edit/movie-edit.component";
 import {MovieAddComponent} from "./movie/movie-add/movie-add.component";
 import {ReservationGuard} from "./security/guard/reservation.guard";
+import {ReservationCancelGuard} from "./security/guard/reservation-cancel-guard.service";
 
 const appRoutes: Routes = [
   {
@@ -71,7 +72,8 @@ const appRoutes: Routes = [
   {
     path: 'repertuar/:id/rezerwacja',
     component: MovieReserveComponent,
-    canActivate: [ReservationGuard]
+    canActivate: [ReservationGuard],
+    canDeactivate: [ReservationCancelGuard]
   },
   {
     path: 'repertuar/:id/rezerwacja/sukces',

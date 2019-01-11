@@ -7,7 +7,9 @@ import pl.michalkruk.cinema.core.show.exception.SeatAlreadyOccupiedException;
 import pl.michalkruk.cinema.core.show.exception.ShowStartsSoonException;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class ShowFacade {
@@ -16,6 +18,7 @@ public class ShowFacade {
     private final ShowService showService;
     private final ReservationService reservationService;
     private final ReservedSeatService reservedSeatService;
+    private final ConcurrentHashMap<Long, Set<String>> temporaryReservedSeats = new ConcurrentHashMap<>();
 
     public ShowFacade(ModelMapper modelMapper, ShowService showService,
                       ReservationService reservationService, ReservedSeatService reservedSeatService) {
@@ -29,7 +32,13 @@ public class ShowFacade {
     public ShowDTO findById(Long id) {
         Show show = showService.findById(id);
         ShowDTO dto = modelMapper.map(show, ShowDTO.class);
-        dto.setReservedSeats(reservedSeatService.getReservedSeatsForShow(id));
+        Set<String> reserved = reservedSeatService.getReservedSeatsForShow(id);
+
+        if (temporaryReservedSeats.containsKey(id)) {
+            reserved.addAll(temporaryReservedSeats.get(id));
+        }
+
+        dto.setReservedSeats(reserved);
         return dto;
     }
 
@@ -44,6 +53,25 @@ public class ShowFacade {
             return mapToDTO(reservation, show, reservedSeats);
         } else {
             return null;
+        }
+    }
+
+    void addTemporaryReservation(Long showId, TemporarySeatReservationForm seat) {
+        if (seat.isReserved()) {
+            if (temporaryReservedSeats.containsKey(showId)) {
+                temporaryReservedSeats.get(showId).add(seat.getName());
+            } else {
+                temporaryReservedSeats.put(showId, new HashSet<>());
+                temporaryReservedSeats.get(showId).add(seat.getName());
+            }
+        } else {
+            temporaryReservedSeats.get(showId).remove(seat.getName());
+        }
+    }
+
+    void removeTemporaryReservations(Long showId, Set<String> seats) {
+        if (temporaryReservedSeats.containsKey(showId)) {
+            temporaryReservedSeats.get(showId).removeAll(seats);
         }
     }
 
