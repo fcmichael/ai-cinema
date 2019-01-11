@@ -4,26 +4,25 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Event} from "./event";
+import {EVENTS_URL} from "../url-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  private eventUrl: string = 'http://localhost:8080/events';
-
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
   }
 
   getEvent(id: number): Observable<Event> {
-    return this.httpClient.get<Event>(this.eventUrl + '/' + id)
+    return this.httpClient.get<Event>(EVENTS_URL + '/' + id)
       .pipe(map(event => {
         return this.mapData(event);
       }));
   }
 
   getEvents(): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(this.eventUrl)
+    return this.httpClient.get<Event[]>(EVENTS_URL)
       .pipe(map((events: Event[]) => {
         return events.map(event => {
           return this.mapData(event);

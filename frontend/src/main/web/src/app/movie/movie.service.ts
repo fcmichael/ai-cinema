@@ -5,19 +5,18 @@ import {Movie} from "./movie";
 import {map} from "rxjs/operators";
 import {DomSanitizer} from "@angular/platform-browser";
 import {MovieForm} from "./movie-form";
+import {MOVIES_URL} from "../url-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  private movieUrl: string = 'http://localhost:8080/movies';
-
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
   }
 
   getAllMovies(): Observable<Movie[]> {
-    return this.httpClient.get<Movie[]>(this.movieUrl)
+    return this.httpClient.get<Movie[]>(MOVIES_URL)
       .pipe(map((movies: Movie[]) => {
         return movies.map(r => {
           return this.mapMovie(r);
@@ -26,7 +25,7 @@ export class MovieService {
   }
 
   getMovieById(id: number): Observable<Movie> {
-    const url = this.movieUrl + '/' + id;
+    const url = MOVIES_URL + '/' + id;
     return this.httpClient.get<Movie>(url)
       .pipe(map((movie: Movie) => {
         return this.mapMovie(movie);
@@ -38,11 +37,11 @@ export class MovieService {
     formData.append('file', form.image);
     formData.append('form', JSON.stringify(form));
 
-    return this.httpClient.post<Movie>(this.movieUrl, formData);
+    return this.httpClient.post<Movie>(MOVIES_URL, formData);
   }
 
   editMovie(id: number, form: MovieForm): Observable<Movie> {
-    const url = this.movieUrl + '/' + id;
+    const url = MOVIES_URL + '/' + id;
     return this.httpClient.put<Movie>(url, form);
   }
 

@@ -4,13 +4,12 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {ProgrammeMovie} from "./programme-movie";
+import {PROGRAMMES_URL} from "../url-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgrammeService {
-
-  private programmeUrl: string = 'http://localhost:8080/programmes';
 
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {
   }
@@ -36,7 +35,7 @@ export class ProgrammeService {
       params = params.append('releaseYear', releaseYear);
     }
 
-    return this.httpClient.get<ProgrammeMovie[]>(this.programmeUrl, {params: params})
+    return this.httpClient.get<ProgrammeMovie[]>(PROGRAMMES_URL, {params: params})
       .pipe(map((movies: ProgrammeMovie[]) => {
         return movies.map(r => {
           return this.mapMovie(r);

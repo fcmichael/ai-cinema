@@ -4,13 +4,12 @@ import {map} from "rxjs/operators";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {TOKEN_NAME} from "./authentication.constant";
+import {LOGIN_URL} from "../url-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  loginUrl: string = 'http://localhost:8080/login';
 
   constructor(private httpClient: HttpClient,
               private jwtHelper: JwtHelperService,
@@ -28,7 +27,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.httpClient.post(this.loginUrl, {username, password}, {observe: 'response'})
+    return this.httpClient.post(LOGIN_URL, {username, password}, {observe: 'response'})
       .pipe(map(resp => {
         let token = resp.headers.get("Authorization");
 

@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TicketType} from "./ticket-type";
+import {TICKETS_URL} from "../url-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  private ticketUrl: string = 'http://localhost:8080/tickets';
 
   constructor(private httpClient: HttpClient) { }
 
   getTicketTypes(): Observable<TicketType[]> {
-    let url = this.ticketUrl + '/types';
+    let url = TICKETS_URL + '/types';
 
     return this.httpClient.get<TicketType[]>(url);
   }
