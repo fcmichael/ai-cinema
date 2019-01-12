@@ -58,12 +58,10 @@ public class ShowFacade {
 
     void addTemporaryReservation(Long showId, TemporarySeatReservationForm seat) {
         if (seat.isReserved()) {
-            if (temporaryReservedSeats.containsKey(showId)) {
-                temporaryReservedSeats.get(showId).add(seat.getName());
-            } else {
+            if (!temporaryReservedSeats.containsKey(showId)) {
                 temporaryReservedSeats.put(showId, new HashSet<>());
-                temporaryReservedSeats.get(showId).add(seat.getName());
             }
+            temporaryReservedSeats.get(showId).add(seat.getName());
         } else {
             temporaryReservedSeats.get(showId).remove(seat.getName());
         }

@@ -5,3 +5,6 @@ export const PROGRAMMES_URL = BACKEND_URL + 'programmes';
 export const SHOWS_URL = BACKEND_URL + 'shows';
 export const MOVIES_URL = BACKEND_URL + 'movies';
 export const EVENTS_URL = BACKEND_URL + 'events';
+export const SEAT_RESERVATIONS_WEBSOCKET_URL = BACKEND_URL + 'stomp-endpoint';
+export const SEAT_RESERVATIONS_WEBSOCKET_URL_RESERVE_SINGLE = '/app/temporaryReservation';
+export const SEAT_RESERVATIONS_WEBSOCKET_URL_RELEASE_SEATS = '/app/releaseSeats';

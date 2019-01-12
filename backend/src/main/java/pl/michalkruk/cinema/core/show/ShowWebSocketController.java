@@ -19,16 +19,16 @@ public class ShowWebSocketController {
         this.showFacade = showFacade;
     }
 
-    @MessageMapping("/hello/single/{showId}")
-    @SendTo("/topic/hi/single/{showId}")
+    @MessageMapping("/temporaryReservation/{showId}")
+    @SendTo("/app/temporaryReservation/{showId}")
     public TemporarySeatReservationForm getReservedSeat(@DestinationVariable Long showId, TemporarySeatReservationForm seat) {
         showFacade.addTemporaryReservation(showId, seat);
         return seat;
     }
 
-    @MessageMapping("/hello/multi/{showId}")
-    @SendTo("/topic/hi/multi/{showId}")
-    public Set<String> seatsReleased(@DestinationVariable Long showId, Set<String> seats) {
+    @MessageMapping("/releaseSeats/{showId}")
+    @SendTo("/app/releaseSeats/{showId}")
+    public Set<String> releaseSeats(@DestinationVariable Long showId, Set<String> seats) {
         showFacade.removeTemporaryReservations(showId, seats);
         return seats;
     }
